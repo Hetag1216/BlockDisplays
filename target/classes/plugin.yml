@@ -1,0 +1,23 @@
+name: BlockDisplays
+main: com.hetag.blockdisplays.BlockDisplays
+version: 1.0
+api-vetsion: 1.13.2
+authors: ['_Hetag1216_']
+commands:
+  bd:
+    usage: /<command>
+    description: BD main command
+permissions:
+  blockdisplays.command.admin: 
+    default: op
+    description: Access to all commands.
+    children:
+      blockdisplays.command.list: true
+      blockdisplays.command.create: true
+      blockdisplays.command.delete: true
+      blockdisplays.command.help: true
+      blockdisplays.command.version: true
+      blockdisplays.command.reload: true
+      blockdisplays.command.rotate: true
+      blockdisplays.command.teleport: true
+      
