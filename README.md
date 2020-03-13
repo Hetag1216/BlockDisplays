@@ -23,4 +23,4 @@ Easily create miniature blocks to decorate your server!
 • blockdisplays.command.version - Gives access to /bd version command
 
 Join now the discord for live support and live updates on the projects!
-![Core Icon](https://cdn.discordapp.com/attachments/595364073147728025/687819024457007140/discord_header.png)(https://discord.gg/yqs9UJs)
+![Core Icon(https://cdn.discordapp.com/attachments/595364073147728025/687819024457007140/discord_header.png)](https://discord.gg/yqs9UJs)
