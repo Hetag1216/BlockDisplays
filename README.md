@@ -22,6 +22,12 @@ Easily create miniature blocks to decorate your server!
 • blockdisplays.command.list - Gives access to /bd list command
 • blockdisplays.command.version - Gives access to /bd version command
 
+![Core Icon](https://cdn.discordapp.com/attachments/595364073147728025/687818076506423421/Untitled_design_1.jpg)
+![Core Icon](https://cdn.discordapp.com/attachments/595364073147728025/688063537498816512/2020-03-13_00.51.45-1.png)
+![Core Icon](https://cdn.discordapp.com/attachments/595364073147728025/688063588614930495/2020-03-13_00.51.53.png)
+![Core Icon](https://cdn.discordapp.com/attachments/595364073147728025/688063602627969196/2020-03-13_00.40.52.png)
+![Core Icon](https://cdn.discordapp.com/attachments/595364073147728025/688063606222487582/2020-03-13_00.31.11.png)
+
 Join now the discord for live support and live updates on the projects!
 ![Core Icon](https://cdn.discordapp.com/attachments/595364073147728025/687819024457007140/discord_header.png)
 https://discord.gg/yqs9UJs
