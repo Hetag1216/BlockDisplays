@@ -20,7 +20,7 @@ public class VersionCommand extends BDCommand {
 		}
 		sendMessage(sender, "", true);
 		sendMessage(sender, "&3Version: &b" + BlockDisplays.getInstance().getDescription().getVersion(), false);
-		sendMessage(sender, "&3Version: &b" + BlockDisplays.getInstance().getDescription().getAuthors().toString().replace("[", "").toString().replace("]", ""), false);
+		sendMessage(sender, "&3Author: &b" + BlockDisplays.getInstance().getDescription().getAuthors().toString().replace("[", "").toString().replace("]", ""), false);
 		sendMessage(sender, "&3Compatible Minecraft Version(s): &b 1.13 - 1.14", false);
 		sendMessage(sender, "&3Using Protocol: &b" + BlockDisplays.getProtocol().toString(), false);
 	}
