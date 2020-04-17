@@ -22,7 +22,7 @@ public class CreateCommand extends BDCommand {
 		if (this.isPlayer(sender) && this.hasPermission(sender) || !correctLength(sender, 0, 3, 3)) {
 			if (args.size() == 3) {
 				if (BlockDisplays.FloatingBlocks.getConfig().contains("FloatingBlocks." + args.get(0))) {
-					sendMessage(sender, onExist().replace("%block%", args.get(0)), true);
+					sendMessage(sender, onExist().replace("%name%", args.get(0)), true);
 					return;
 				}
 				Material mat = Material.matchMaterial(args.get(1));
@@ -42,6 +42,7 @@ public class CreateCommand extends BDCommand {
 				}
 				Player player = (Player) sender;
 				new FloatingBlock(args.get(0), player.getLocation(), mat, size);
+				sendMessage(player, onCreate().replace("%name%", args.get(0)), true);
 				return;
 			}
 			if (args.size() > 3 || args.size() < 3) {
@@ -50,6 +51,10 @@ public class CreateCommand extends BDCommand {
 		} else {
 			return;
 		}
+	}
+	
+	public String onCreate() {
+		return formatColors(Manager.getConfig().getString("Commands.Create.OnCreate"));
 	}
 	
 	public String onExist() {

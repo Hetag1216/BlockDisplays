@@ -34,6 +34,8 @@ public class RotateCommand extends BDCommand {
 						}
 					}
 				}
+			} else {
+				sendMessage(sender, onInvalid().replace("%name%", floatingBlock), true);
 			}
 		}
 		if (args.size() > 2 || args.size() < 2) {
@@ -43,5 +45,8 @@ public class RotateCommand extends BDCommand {
 	
 	public String onRotate() {
 		return Manager.getConfig().getString("Commands.Rotate.OnRotate");
+	}
+	public String onInvalid() {
+	return Manager.getConfig().getString("Commands.Rotate.OnInvalid");
 	}
 }

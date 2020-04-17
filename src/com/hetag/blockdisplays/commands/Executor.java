@@ -33,6 +33,7 @@ public class Executor {
 		new RotateCommand();
 		new TeleportCommand();
 		new ConfigReloadCommand();
+		new InfoCommand();
 		help = Manager.getConfig().getStringList("Commands.HelpLines");
 
 		CommandExecutor exe = new CommandExecutor() {

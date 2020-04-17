@@ -11,7 +11,7 @@ import com.hetag.blockdisplays.configuration.Manager;
 public class TeleportCommand extends BDCommand {
 
 	public TeleportCommand() {
-		super("teleport", "/bd teleport <name>", formatColors(Manager.getConfig().getString("Commands.Teleport.Description")), new String[] { "teleport", "t" });
+		super("teleport", "/bd teleport <name>", formatColors(Manager.getConfig().getString("Commands.Teleport.Description")), new String[] { "teleport", "t", "tp" });
 	}
 
 	@Override
@@ -21,7 +21,7 @@ public class TeleportCommand extends BDCommand {
 		}
 		Player p = (Player) sender;
 		FloatingBlock.getArmorStandByUUID(args.get(0)).teleport(p.getLocation());
-		sendMessage(sender, onTeleport().replace("%block%", args.get(0)), true);
+		sendMessage(sender, onTeleport().replace("%name%", args.get(0)), true);
 		if (args.size() < 1 || args.size() > 1) {
 			sender.sendMessage(getProperUsage());
 		}

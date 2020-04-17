@@ -32,16 +32,14 @@ public class HelpCommand extends BDCommand {
 		if (args.size() == 0) {
 			List<String> strings = new ArrayList<>();
 			for (BDCommand command : instances.values()) {
-				if ((!command.getName().equalsIgnoreCase("help"))
-						&& (sender.hasPermission("blockdisplays.command." + command.getName()))) {
+				if ((!command.getName().equalsIgnoreCase("help")) && (sender.hasPermission("blockdisplays.command." + command.getName()))) {
 					strings.add(command.getProperUse());
 				}
 			}
 			Collections.sort(strings);
 			Collections.reverse(strings);
 			Collections.reverse(strings);
-			for (String s : getPage(strings,
-					ChatColor.GRAY + "Commands: <" + this.required + "> [" + this.optional + "]", 1, false)) {
+			for (String s : getPage(strings, ChatColor.GRAY + "Commands: <" + this.required + "> [" + this.optional + "]", 1, false)) {
 				sender.sendMessage(ChatColor.GREEN + s);
 			}
 			return;
@@ -52,9 +50,7 @@ public class HelpCommand extends BDCommand {
 			for (BDCommand command : instances.values()) {
 				strings.add(command.getProperUse());
 			}
-			for (String s : getPage(strings,
-					ChatColor.GRAY + "Commands: <" + this.required + "> [" + this.optional + "]",
-					Integer.valueOf(arg).intValue(), true)) {
+			for (String s : getPage(strings, ChatColor.GRAY + "Commands: <" + this.required + "> [" + this.optional + "]", Integer.valueOf(arg).intValue(), true)) {
 				sender.sendMessage(ChatColor.GREEN + s);
 			}
 		} else if (instances.keySet().contains(arg)) {

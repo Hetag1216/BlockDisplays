@@ -7,10 +7,12 @@ C:\Users\dario\OneDrive\Desktop\Developing\Workspace\BlockDisplays\src\com\hetag
 C:\Users\dario\OneDrive\Desktop\Developing\Workspace\BlockDisplays\src\com\hetag\blockdisplays\BlockDisplays.java
 C:\Users\dario\OneDrive\Desktop\Developing\Workspace\BlockDisplays\src\com\hetag\blockdisplays\commands\Executor.java
 C:\Users\dario\OneDrive\Desktop\Developing\Workspace\BlockDisplays\src\com\hetag\blockdisplays\reflection\BDProtocol.java
+C:\Users\dario\OneDrive\Desktop\Developing\Workspace\BlockDisplays\src\com\hetag\blockdisplays\reflection\V1_15\Protocol_1_15.java
 C:\Users\dario\OneDrive\Desktop\Developing\Workspace\BlockDisplays\src\com\hetag\blockdisplays\commands\TeleportCommand.java
 C:\Users\dario\OneDrive\Desktop\Developing\Workspace\BlockDisplays\src\com\hetag\blockdisplays\configuration\Config.java
 C:\Users\dario\OneDrive\Desktop\Developing\Workspace\BlockDisplays\src\com\hetag\blockdisplays\configuration\ConfigType.java
 C:\Users\dario\OneDrive\Desktop\Developing\Workspace\BlockDisplays\src\com\hetag\blockdisplays\commands\HelpCommand.java
+C:\Users\dario\OneDrive\Desktop\Developing\Workspace\BlockDisplays\src\com\hetag\blockdisplays\commands\InfoCommand.java
 C:\Users\dario\OneDrive\Desktop\Developing\Workspace\BlockDisplays\src\com\hetag\blockdisplays\commands\VersionCommand.java
 C:\Users\dario\OneDrive\Desktop\Developing\Workspace\BlockDisplays\src\com\hetag\blockdisplays\commands\RotateCommand.java
 C:\Users\dario\OneDrive\Desktop\Developing\Workspace\BlockDisplays\src\com\hetag\blockdisplays\configuration\Manager.java

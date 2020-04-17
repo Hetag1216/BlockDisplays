@@ -33,6 +33,7 @@ public class FloatingBlock {
         as.setHelmet(new ItemStack(mat, 1));
         as.setVisible(false);
         as.setGravity(false);
+        // players are able to get the block from the AS' head, find a way to restrict that @version 1.1
         switch (size) {
 		default:
 			as.setSmall(true);
@@ -81,6 +82,25 @@ public class FloatingBlock {
 		return Integer.valueOf(BlockDisplays.FloatingBlocks.getConfig().getInt("FloatingBlocks." + name + ".Location.Z"));
 	}
 	
+	public static Material getMaterial(String name) {
+		return Material.valueOf(BlockDisplays.FloatingBlocks.getConfig().getString("FloatingBlocks." + name + ".Material"));
+	}
+	
+	public static String getSize(String name) {
+		return BlockDisplays.FloatingBlocks.getConfig().getString("FloatingBlocks." + name + ".Size");
+	}
+	
+	public static UUID getUUID(String name) {
+		return UUID.fromString(BlockDisplays.FloatingBlocks.getConfig().getString("FloatingBlocks." + name + ".UUID"));
+	}
+	
+	public static double getYaw(String name) {
+		return BlockDisplays.FloatingBlocks.getConfig().getDouble("FloatingBlocks." + name + ".Location.Yaw");
+	}
+	public static double getPitch(String name) {
+		return BlockDisplays.FloatingBlocks.getConfig().getDouble("FloatingBlocks." + name + ".Location.Pitch");
+	}
+	
 	public static void rotateBlock(String name, float yaw) {
 		Entity entity = getArmorStandByUUID(name);
 		Location loc = getArmorStandByUUID(name).getLocation();
@@ -89,9 +109,9 @@ public class FloatingBlock {
 	}
 	
 	public static Entity getArmorStandByUUID(String name) {
-		String uuid = BlockDisplays.FloatingBlocks.getConfig().getString("FloatingBlocks." + name + ".UUID");
+		UUID uuid = getUUID(name);
 		for (Entity entity : FloatingBlock.getWorld(name).getEntities()) {
-			if (entity.getUniqueId().equals(UUID.fromString(uuid))) {
+			if (entity.getUniqueId().equals(uuid)) {
 				return entity;
 			}
 		}

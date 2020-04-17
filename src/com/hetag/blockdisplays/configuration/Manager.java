@@ -36,22 +36,27 @@ public class Manager {
 		config.addDefault("Commands.Version.Description", "Shows plugin's version and information.");
 		
 		config.addDefault("Commands.Create.Description", "Creates a block at the player's standing position.");
-		config.addDefault("Commands.Create.AlreadyExists", "A block with the name of &3%block%&b already exists!");
+		config.addDefault("Commands.Create.OnCreate", "Succesfully created &3%name%&b!");
+		config.addDefault("Commands.Create.AlreadyExists", "A block with the name of &3%name%&b already exists!");
 		config.addDefault("Commands.Create.MaterialUnMatch", "&3%material%&b couldn't be matched, please use a different material type!");
-		config.addDefault("Commands.Create.SizeUnMatch", "&3%size%&b couldn't be found, please choose a size of these: &3%possibleSizes%&b.");
+		config.addDefault("Commands.Create.SizeUnMatch", "&3%size%&b couldn't be found, please choose a size between these: &3%possibleSizes%&b.");
 		
 		config.addDefault("Commands.Delete.Description", "Deletes an existing block.");
-		config.addDefault("Commands.Delete.OnSuccess", "&3%block% &bwas succesfully removed!");
-		config.addDefault("Commands.Delete.OnFail", "&3%block% &bcouldn't be found!");
+		config.addDefault("Commands.Delete.OnSuccess", "&3%name% &bwas succesfully removed!");
+		config.addDefault("Commands.Delete.OnFail", "&3%name% &bcouldn't be found!");
 		
 		config.addDefault("Commands.List.Description", "Shows a list of existing blocks.");
 		config.addDefault("Commands.List.NotFound", "There currently aren't any existing blocks.");
 		
-		config.addDefault("Commands.Rotate.Description", "Rotates an existing block's face direction.");
-		config.addDefault("Commands.Rotate.OnRotate", "The block was succesfully rotated of %value% degree(s)");
+		config.addDefault("Commands.Info.Description", "Shows details about an existing block.");
+		config.addDefault("Commands.Info.OnInvalid", "&3%name%&b doesn't exist!");
 		
-		config.addDefault("Commands.Teleport.Description", "Teleports an existing block to player's position");
-		config.addDefault("Commands.Teleport.OnTeleport", "&3%block% &bwas succesfully teleported!");
+		config.addDefault("Commands.Rotate.Description", "Rotates an existing block's face direction.");
+		config.addDefault("Commands.Rotate.OnRotate", "The block was succesfully rotated of &3%value%&b degree(s)");
+		config.addDefault("Commands.Rotate.OnInvalid", "Couldn't find &3%name%&b!");
+		
+		config.addDefault("Commands.Teleport.Description", "Teleports an existing block to player's position.");
+		config.addDefault("Commands.Teleport.OnTeleport", "&3%name% &bwas succesfully teleported!");
 		
 		config.addDefault("Commands.Reload.Description", "Reloads plugin's configurations.");
 		config.addDefault("Commands.Reload.OnReload", "&aPlugin's configurations were succesfully reloaded!");

@@ -24,10 +24,10 @@ public class DeleteCommand extends BDCommand {
 		}
 		String block = args.get(0);
 		if (deleteFloatingBlock(block)) {
-			this.sendMessage(sender, onDeleteSuccess().replace("%block%", block), true);
+			this.sendMessage(sender, onDeleteSuccess().replace("%name%", block), true);
 			return;
 		} else {
-			this.sendMessage(sender, onDeleteFail().replace("%block%", block), true);
+			this.sendMessage(sender, onDeleteFail().replace("%name%", block), true);
 			return;
 		}
 	}
