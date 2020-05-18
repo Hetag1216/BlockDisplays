@@ -10,7 +10,10 @@ import org.bukkit.World;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Zombie;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import com.hetag.blockdisplays.BlockDisplays;
 
@@ -18,49 +21,70 @@ public class FloatingBlock {
 	public static ConcurrentHashMap<ArmorStand, FloatingBlock> instances = new ConcurrentHashMap<>();
 
 	public ArmorStand as;
+	public Zombie zombie;
 
 	public String name;
+	public Location location;
 	public static long checker = System.currentTimeMillis();
 	
 	public enum Sizes {
-		Small, Normal;
+		Tiny, Small, Normal;
 	}
 	
 
 	public FloatingBlock(String name, Location location, Material mat, Sizes size) {
 		this.name = name;
-        as = (ArmorStand) location.getWorld().spawnEntity(location, EntityType.ARMOR_STAND);
-        as.setHelmet(new ItemStack(mat, 1));
-        as.setVisible(false);
-        as.setGravity(false);
-        // players are able to get the block from the AS' head, find a way to restrict that @version 1.1
+		this.location = location;
         switch (size) {
-		default:
-			as.setSmall(true);
-			break;
+		case Tiny:
+			zombie = (Zombie) location.getWorld().spawnEntity(location, EntityType.ZOMBIE);
+			zombie.setBaby(true);
+			zombie.setGravity(false);
+			zombie.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 1));
+			zombie.setSilent(true);
+			zombie.setAI(false);
+			ItemStack item = new ItemStack(mat, 1);
+			zombie.getEquipment().setItemInMainHand(item);
         case Small:
+            as = (ArmorStand) location.getWorld().spawnEntity(location, EntityType.ARMOR_STAND);
+            as.setHelmet(new ItemStack(mat, 1));
+            as.setVisible(false);
+            as.setGravity(false);
         	as.setSmall(true);
         	break;
         case Normal:
+            as = (ArmorStand) location.getWorld().spawnEntity(location, EntityType.ARMOR_STAND);
+            as.setHelmet(new ItemStack(mat, 1));
+            as.setVisible(false);
+            as.setGravity(false);
         	as.setSmall(false);
         	as.getLocation().setY(as.getLocation().getY() - 1);
         	break;
         }
-            double x = as.getLocation().getX();
-            double y = as.getLocation().getY();
-            double z = as.getLocation().getZ();
-            UUID uuid = as.getUniqueId();
+            double x = location.getX();
+            double y = location.getY();
+            double z = location.getZ();
+            UUID uuid = null;
+            if (size == Sizes.Normal || size == Sizes.Small) {
+            	uuid = as.getUniqueId();
+            } else if (size == Sizes.Tiny) {
+            	uuid = zombie.getUniqueId();
+            }
             String uuidString = uuid.toString();
     		
-    		BlockDisplays.FloatingBlocks.getConfig().set("FloatingBlocks." + name + ".Location.World", as.getWorld().getName());
+    		BlockDisplays.FloatingBlocks.getConfig().set("FloatingBlocks." + name + ".Location.World", location.getWorld().getName());
     		BlockDisplays.FloatingBlocks.getConfig().set("FloatingBlocks." + name + ".Location.X", x);
     		BlockDisplays.FloatingBlocks.getConfig().set("FloatingBlocks." + name + ".Location.Y", y);
     		BlockDisplays.FloatingBlocks.getConfig().set("FloatingBlocks." + name + ".Location.Z", z);
-    		BlockDisplays.FloatingBlocks.getConfig().set("FloatingBlocks." + name + ".Location.Pitch", as.getLocation().getPitch());
-    		BlockDisplays.FloatingBlocks.getConfig().set("FloatingBlocks." + name + ".Location.Yaw", as.getLocation().getYaw());
+    		BlockDisplays.FloatingBlocks.getConfig().set("FloatingBlocks." + name + ".Location.Pitch", location.getPitch());
+    		BlockDisplays.FloatingBlocks.getConfig().set("FloatingBlocks." + name + ".Location.Yaw", location.getYaw());
     		BlockDisplays.FloatingBlocks.getConfig().set("FloatingBlocks." + name + ".Size", size.toString());
-    		BlockDisplays.FloatingBlocks.getConfig().set("FloatingBlocks." + name + ".Material", as.getHelmet().getType().toString());
-    		BlockDisplays.FloatingBlocks.getConfig().set("FloatingBlocks." + name + ".UUID", uuidString);
+		if (size == Sizes.Normal || size == Sizes.Small) {
+			BlockDisplays.FloatingBlocks.getConfig().set("FloatingBlocks." + name + ".Material", as.getHelmet().getType().toString());
+		} else if (size == Sizes.Tiny) {
+			BlockDisplays.FloatingBlocks.getConfig().set("FloatingBlocks." + name + ".Material", zombie.getEquipment().getItemInMainHand().getType().toString());
+		}
+		BlockDisplays.FloatingBlocks.getConfig().set("FloatingBlocks." + name + ".UUID", uuidString);
         
 		BlockDisplays.FloatingBlocks.saveConfig();	
 		instances.put(as, this);
@@ -102,13 +126,13 @@ public class FloatingBlock {
 	}
 	
 	public static void rotateBlock(String name, float yaw) {
-		Entity entity = getArmorStandByUUID(name);
-		Location loc = getArmorStandByUUID(name).getLocation();
+		Entity entity = getFloatingBlockByUUID(name);
+		Location loc = getFloatingBlockByUUID(name).getLocation();
 		loc.setYaw(loc.getYaw() + yaw);
 		entity.teleport(loc);
 	}
 	
-	public static Entity getArmorStandByUUID(String name) {
+	public static Entity getFloatingBlockByUUID(String name) {
 		UUID uuid = getUUID(name);
 		for (Entity entity : FloatingBlock.getWorld(name).getEntities()) {
 			if (entity.getUniqueId().equals(uuid)) {

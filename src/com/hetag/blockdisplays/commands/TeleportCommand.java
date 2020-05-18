@@ -20,7 +20,7 @@ public class TeleportCommand extends BDCommand {
 			return;
 		}
 		Player p = (Player) sender;
-		FloatingBlock.getArmorStandByUUID(args.get(0)).teleport(p.getLocation());
+		FloatingBlock.getFloatingBlockByUUID(args.get(0)).teleport(p.getLocation());
 		sendMessage(sender, onTeleport().replace("%name%", args.get(0)), true);
 		if (args.size() < 1 || args.size() > 1) {
 			sender.sendMessage(getProperUsage());

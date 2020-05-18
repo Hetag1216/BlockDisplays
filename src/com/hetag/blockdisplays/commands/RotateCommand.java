@@ -1,7 +1,6 @@
 package com.hetag.blockdisplays.commands;
 
 import java.util.List;
-import java.util.UUID;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
@@ -24,9 +23,9 @@ public class RotateCommand extends BDCommand {
 		if (args.size() == 2) {
 			String floatingBlock = args.get(0);
 			if (BlockDisplays.FloatingBlocks.getConfig().contains("FloatingBlocks." + floatingBlock)) {
-				String uuid = BlockDisplays.FloatingBlocks.getConfig().getString("FloatingBlocks." + floatingBlock + ".UUID");
+				//String uuid = BlockDisplays.FloatingBlocks.getConfig().getString("FloatingBlocks." + floatingBlock + ".UUID");
 				for (Entity ent : FloatingBlock.getWorld(floatingBlock).getEntities()) {
-					if (ent.getUniqueId().equals(UUID.fromString(uuid))) {
+					if (ent.getUniqueId().equals(FloatingBlock.getUUID(floatingBlock))) {
 						if (isNumeric(args.get(1))) {
 							float yaw = Float.valueOf(args.get(1));
 							FloatingBlock.rotateBlock(floatingBlock, yaw);
@@ -46,7 +45,8 @@ public class RotateCommand extends BDCommand {
 	public String onRotate() {
 		return Manager.getConfig().getString("Commands.Rotate.OnRotate");
 	}
+
 	public String onInvalid() {
-	return Manager.getConfig().getString("Commands.Rotate.OnInvalid");
+		return Manager.getConfig().getString("Commands.Rotate.OnInvalid");
 	}
 }
