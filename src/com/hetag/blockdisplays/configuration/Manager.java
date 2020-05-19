@@ -18,8 +18,8 @@ public class Manager {
 	private void loadConfig(ConfigType type) {
 		if (type == ConfigType.DEFAULT) {
 		FileConfiguration config = defaultConfig.getConfig();
-		config.addDefault("Settings.Language.NoPermission", "&cYou don't own sufficent permissions!");
-		config.addDefault("Settings.Language.MustBePlayer", "&cYou must be a player in order to do this!");
+		config.addDefault("Settings.Language.NoPermission", "&cYou don't own sufficent permissions.");
+		config.addDefault("Settings.Language.MustBePlayer", "&cYou must be a player in order to do this.");
 		config.addDefault("Settings.Language.ChatPrefix", "&8[&bBlockDisplays&8]&b ");
 		
 		ArrayList<String> helpLines = new ArrayList<>();
@@ -36,30 +36,34 @@ public class Manager {
 		config.addDefault("Commands.Version.Description", "Shows plugin's version and information.");
 		
 		config.addDefault("Commands.Create.Description", "Creates a block at the player's standing position.");
-		config.addDefault("Commands.Create.OnCreate", "Succesfully created &3%name%&b!");
-		config.addDefault("Commands.Create.AlreadyExists", "A block with the name of &3%name%&b already exists!");
-		config.addDefault("Commands.Create.MaterialUnMatch", "&3%material%&b couldn't be matched, please use a different material type!");
+		config.addDefault("Commands.Create.OnCreate", "Succesfully created &3%name%&b.");
+		config.addDefault("Commands.Create.AlreadyExists", "A block with the name of &3%name%&b already exists.");
+		config.addDefault("Commands.Create.MaterialUnMatch", "&3%material%&b couldn't be matched, please use a different material type.");
 		config.addDefault("Commands.Create.SizeUnMatch", "&3%size%&b couldn't be found, please choose a size between these: &3%possibleSizes%&b.");
 		
 		config.addDefault("Commands.Delete.Description", "Deletes an existing block.");
-		config.addDefault("Commands.Delete.OnSuccess", "&3%name% &bwas succesfully removed!");
-		config.addDefault("Commands.Delete.OnFail", "&3%name% &bcouldn't be found!");
+		config.addDefault("Commands.Delete.OnSuccess", "&3%name% &bwas succesfully removed.");
+		config.addDefault("Commands.Delete.OnFail", "&3%name% &bcouldn't be found.");
 		
 		config.addDefault("Commands.List.Description", "Shows a list of existing blocks.");
 		config.addDefault("Commands.List.NotFound", "There currently aren't any existing blocks.");
 		
 		config.addDefault("Commands.Info.Description", "Shows details about an existing block.");
-		config.addDefault("Commands.Info.OnInvalid", "&3%name%&b doesn't exist!");
+		config.addDefault("Commands.Info.OnInvalid", "&3%name%&b doesn't exist.");
 		
 		config.addDefault("Commands.Rotate.Description", "Rotates an existing block's face direction.");
 		config.addDefault("Commands.Rotate.OnRotate", "The block was succesfully rotated of &3%value%&b degree(s)");
-		config.addDefault("Commands.Rotate.OnInvalid", "Couldn't find &3%name%&b!");
+		config.addDefault("Commands.Rotate.OnInvalid", "Couldn't find &3%name%&b.");
+		
+		config.addDefault("Commands.Location.Description", "Edits the location of an existing floating block.");
+		config.addDefault("Commands.Location.OnEdit", "Succesfully edited &3%coord% &bby &3%value%&b for &3%name%&b.");
+		config.addDefault("Commands.Location.NotNumeric", "&3%value%&b is not numeric, specify a value in numbers.");
 		
 		config.addDefault("Commands.Teleport.Description", "Teleports an existing block to player's position.");
-		config.addDefault("Commands.Teleport.OnTeleport", "&3%name% &bwas succesfully teleported!");
+		config.addDefault("Commands.Teleport.OnTeleport", "&3%name% &bwas succesfully teleported.");
 		
 		config.addDefault("Commands.Reload.Description", "Reloads plugin's configurations.");
-		config.addDefault("Commands.Reload.OnReload", "&aPlugin's configurations were succesfully reloaded!");
+		config.addDefault("Commands.Reload.OnReload", "&aPlugin's configurations were succesfully reloaded.");
 		config.addDefault("Commands.Reload.onFail", "&cPlugin's configurations couldn't be reloaded correctly, printing stack trace in console.");
 		defaultConfig.saveConfig();
 		}

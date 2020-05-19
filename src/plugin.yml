@@ -21,4 +21,5 @@ permissions:
       blockdisplays.command.rotate: true
       blockdisplays.command.teleport: true
       blockdisplays.command.info: true
+      blockdisplays.command.location: true
       

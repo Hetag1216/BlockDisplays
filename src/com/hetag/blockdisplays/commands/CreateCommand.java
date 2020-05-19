@@ -31,17 +31,20 @@ public class CreateCommand extends BDCommand {
 					return;
 				}
 				Sizes size = null;
+				
 				if (args.get(2).equalsIgnoreCase("small")) {
 					size = Sizes.Small;
 				} else if (args.get(2).equalsIgnoreCase("normal")) {
 					size = Sizes.Normal;
+				} else if (args.get(2).equalsIgnoreCase("tiny")) {
+					size = Sizes.Tiny;
 				} else {
-					String possibleSizes = "Small, Normal";
+					String possibleSizes = "Tiny, Small, Normal";
 					sendMessage(sender, onSizeUnMatch().replace("%size%", args.get(2)).replace("%possibleSizes%", possibleSizes), true);
 					return;
 				}
 				Player player = (Player) sender;
-				new FloatingBlock(args.get(0), player.getLocation(), mat, size);
+				new FloatingBlock(args.get(0), player.getLocation().add(0, 0, 0), mat, size);
 				sendMessage(player, onCreate().replace("%name%", args.get(0)), true);
 				return;
 			}
