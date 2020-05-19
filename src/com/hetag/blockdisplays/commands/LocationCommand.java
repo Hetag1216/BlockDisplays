@@ -11,7 +11,7 @@ import com.hetag.blockdisplays.configuration.Manager;
 public class LocationCommand extends BDCommand {
 
 	public LocationCommand() {
-		super("location", "/bd location <name> <coordinate> <value>", formatColors(Manager.getConfig().getString("Commands.Location.Description")),	new String[] { "location", "loc" });
+		super("location", "/bd location <name> <coordinate - x|y|z> <value>", formatColors(Manager.getConfig().getString("Commands.Location.Description")),	new String[] { "location", "loc" });
 	}
 
 	@Override
@@ -45,6 +45,9 @@ public class LocationCommand extends BDCommand {
 				FloatingBlock.updateLocation(floatingBlock);
 				sendMessage(sender, onEdit().replace("%name%", floatingBlock).replace("%coordinate%", coord).replace("%value%", String.valueOf(value)), true);
 				
+			}
+			if (args.size() > 3 || args.size() < 3) {
+				sender.sendMessage(getProperUsage());
 			}
 		} else {
 			return;
