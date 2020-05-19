@@ -31,6 +31,7 @@ public class CreateCommand extends BDCommand {
 					return;
 				}
 				Sizes size = null;
+				
 				if (args.get(2).equalsIgnoreCase("small")) {
 					size = Sizes.Small;
 				} else if (args.get(2).equalsIgnoreCase("normal")) {

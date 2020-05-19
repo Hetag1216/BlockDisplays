@@ -3,6 +3,7 @@ package com.hetag.blockdisplays.commands;
 import java.util.List;
 
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
 import com.hetag.blockdisplays.blocks.FloatingBlock;
@@ -16,14 +17,17 @@ public class TeleportCommand extends BDCommand {
 
 	@Override
 	public void execute(CommandSender sender, List<String> args) {
-		if (!hasPermission(sender) || !correctLength(sender, 0, 0, 1)) {
-			return;
+		if (!hasPermission(sender)) {
+			return; 
 		}
 		Player p = (Player) sender;
-		FloatingBlock.getFloatingBlockByUUID(args.get(0)).teleport(p.getLocation());
+		Entity block = FloatingBlock.getFloatingBlockByUUID(args.get(0));
+		block.teleport(p.getLocation());
+		FloatingBlock.updateLocation(args.get(0));
 		sendMessage(sender, onTeleport().replace("%name%", args.get(0)), true);
-		if (args.size() < 1 || args.size() > 1) {
-			sender.sendMessage(getProperUsage());
+		
+		if (args.size() > 1 || args.size() < 1) {
+			sendMessage(sender, this.getProperUsage(), true);
 		}
 	}
 

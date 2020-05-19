@@ -34,6 +34,7 @@ public class Executor {
 		new TeleportCommand();
 		new ConfigReloadCommand();
 		new InfoCommand();
+		new LocationCommand();
 		help = Manager.getConfig().getStringList("Commands.HelpLines");
 
 		CommandExecutor exe = new CommandExecutor() {

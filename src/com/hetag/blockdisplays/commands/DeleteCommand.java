@@ -1,10 +1,8 @@
 package com.hetag.blockdisplays.commands;
 
 import java.util.List;
-import java.util.UUID;
 
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Entity;
 
 import com.hetag.blockdisplays.BlockDisplays;
 import com.hetag.blockdisplays.blocks.FloatingBlock;
@@ -33,16 +31,12 @@ public class DeleteCommand extends BDCommand {
 	}
 	
 	public boolean deleteFloatingBlock(String floatingBlock) {
-		if (BlockDisplays.FloatingBlocks.getConfig().contains("FloatingBlocks." + floatingBlock)) {
-			String uuid = BlockDisplays.FloatingBlocks.getConfig().getString("FloatingBlocks." + floatingBlock + ".UUID");
-			for (Entity ent : FloatingBlock.getWorld(floatingBlock).getEntities()) {
-				if (ent.getUniqueId().equals(UUID.fromString(uuid))) {
-					ent.remove();
-					BlockDisplays.FloatingBlocks.getConfig().set("FloatingBlocks." + floatingBlock, null);
-					BlockDisplays.FloatingBlocks.saveConfig();
-					return true;
-				}
+		if (FloatingBlock.exists(floatingBlock)) {
+			if (FloatingBlock.isAlive(floatingBlock)) {
+				FloatingBlock.getFloatingBlockByUUID(floatingBlock).remove();
 			}
+			BlockDisplays.FloatingBlocks.getConfig().set("FloatingBlocks." + floatingBlock, null);
+			BlockDisplays.FloatingBlocks.saveConfig();
 			return true;
 		} else {
 			return false;
