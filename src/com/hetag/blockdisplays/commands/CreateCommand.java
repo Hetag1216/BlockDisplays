@@ -6,7 +6,6 @@ import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import com.hetag.blockdisplays.BlockDisplays;
 import com.hetag.blockdisplays.blocks.FloatingBlock;
 import com.hetag.blockdisplays.blocks.FloatingBlock.Sizes;
 import com.hetag.blockdisplays.configuration.Manager;
@@ -19,9 +18,11 @@ public class CreateCommand extends BDCommand {
 
 	@Override
 	public void execute(CommandSender sender, List<String> args) {
-		if (this.isPlayer(sender) && this.hasPermission(sender) || !correctLength(sender, 0, 3, 3)) {
+		if (!isPlayer(sender) || !hasPermission(sender)) {
+			return;
+		}
 			if (args.size() == 3) {
-				if (BlockDisplays.FloatingBlocks.getConfig().contains("FloatingBlocks." + args.get(0))) {
+				if (FloatingBlock.exists(args.get(0))) {
 					sendMessage(sender, onExist().replace("%name%", args.get(0)), true);
 					return;
 				}
@@ -47,13 +48,9 @@ public class CreateCommand extends BDCommand {
 				new FloatingBlock(args.get(0), player.getLocation().add(0, 0, 0), mat, size);
 				sendMessage(player, onCreate().replace("%name%", args.get(0)), true);
 				return;
+			} else {
+				sendMessage(sender, this.getProperUsage(), true);
 			}
-			if (args.size() > 3 || args.size() < 3) {
-				sender.sendMessage(getProperUsage());
-			}
-		} else {
-			return;
-		}
 	}
 	
 	public String onCreate() {

@@ -43,28 +43,34 @@ public class Manager {
 		
 		config.addDefault("Commands.Delete.Description", "Deletes an existing block.");
 		config.addDefault("Commands.Delete.OnSuccess", "&3%name% &bwas succesfully removed.");
-		config.addDefault("Commands.Delete.OnFail", "&3%name% &bcouldn't be found.");
+		config.addDefault("Commands.Delete.NotFound", "&3%name% &bcouldn't be found.");
 		
 		config.addDefault("Commands.List.Description", "Shows a list of existing blocks.");
 		config.addDefault("Commands.List.NotFound", "There currently aren't any existing blocks.");
 		
 		config.addDefault("Commands.Info.Description", "Shows details about an existing block.");
-		config.addDefault("Commands.Info.OnInvalid", "&3%name%&b doesn't exist.");
+		config.addDefault("Commands.Info.NotFound", "&3%name%&b doesn't exist.");
+		config.addDefault("Commands.Info.OnInvalid", "&3%name%&b exists but cannot be found in the world, please re-create the block.");
 		
 		config.addDefault("Commands.Rotate.Description", "Rotates an existing block's face direction.");
 		config.addDefault("Commands.Rotate.OnRotate", "The block was succesfully rotated of &3%value%&b degree(s)");
-		config.addDefault("Commands.Rotate.OnInvalid", "Couldn't find &3%name%&b.");
+		config.addDefault("Commands.Rotate.NotFound", "&3%name%&b couldn't be found.");
+		config.addDefault("Commands.Rotate.OnInvalid", "&3%name%&b exists but cannot be found in the world, please re-create the block.");
 		
 		config.addDefault("Commands.Location.Description", "Edits the location of an existing floating block.");
 		config.addDefault("Commands.Location.OnEdit", "Succesfully edited &3%coord% &bby &3%value%&b for &3%name%&b.");
 		config.addDefault("Commands.Location.NotNumeric", "&3%value%&b is not numeric, specify a value in numbers.");
+		config.addDefault("Commands.Location.NotFound", "&3%name%&b doesn't exist");
+		config.addDefault("Commands.Location.OnInvalid", "&3%name%&b exists but cannot be found in the world, please re-create the block.");
 		
 		config.addDefault("Commands.Teleport.Description", "Teleports an existing block to player's position.");
 		config.addDefault("Commands.Teleport.OnTeleport", "&3%name% &bwas succesfully teleported.");
+		config.addDefault("Commands.Teleport.notFound", "&3%name% &bcouldn't be found.");
+		config.addDefault("Commands.Teleport.OnInvalid", "&3%name%&b exists but cannot be found in the world, please re-create the block.");
 		
 		config.addDefault("Commands.Reload.Description", "Reloads plugin's configurations.");
 		config.addDefault("Commands.Reload.OnReload", "&aPlugin's configurations were succesfully reloaded.");
-		config.addDefault("Commands.Reload.onFail", "&cPlugin's configurations couldn't be reloaded correctly, printing stack trace in console.");
+		config.addDefault("Commands.Reload.OnFail", "&cPlugin's configurations couldn't be reloaded correctly, printing stack trace in console.");
 		defaultConfig.saveConfig();
 		}
 	}

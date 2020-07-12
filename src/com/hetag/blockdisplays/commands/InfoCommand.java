@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.bukkit.command.CommandSender;
 
-import com.hetag.blockdisplays.BlockDisplays;
 import com.hetag.blockdisplays.blocks.FloatingBlock;
 import com.hetag.blockdisplays.configuration.Manager;
 
@@ -21,7 +20,8 @@ public class InfoCommand extends BDCommand {
 		}
 		if (args.size() == 1) {
 			String block = args.get(0);
-			if (BlockDisplays.FloatingBlocks.getConfig().contains("FloatingBlocks." + block)) {
+			if (FloatingBlock.exists(block)) {
+				if (FloatingBlock.isAlive(block)) {
 				sendMessage(sender, "&8« &b" + block + " &8»", false);
 				sendMessage(sender, "&3World:&b " + FloatingBlock.getWorld(block).getName(), false);
 				sendMessage(sender, "&3X:&b " + FloatingBlock.getX(block), false);
@@ -32,16 +32,23 @@ public class InfoCommand extends BDCommand {
 				sendMessage(sender, "&3Size:&b " + FloatingBlock.getSize(block), false);
 				sendMessage(sender, "&3UUID:&b " + FloatingBlock.getUUID(block), false);
 				sendMessage(sender, "&3Material:&b " + FloatingBlock.getMaterial(block), false);
+				return;
+				} else {
+					sendMessage(sender, onInvalid().replace("%name%", block), true);
+					return;
+				}
 			} else {
-				sendMessage(sender, onInvalid().replace("%name%", block), true);
+				sendMessage(sender, notFound().replace("%name%", block), true);
+				return;
 			}
-		}
-		if (args.size() < 1 || args.size() > 1) {
-			sendMessage(sender, this.getProperUsage(), false);
 		}
 	}
 	
-	public static String onInvalid() {
+	private String onInvalid() {
 		return Manager.getConfig().getString("Commands.Info.OnInvalid");
+	}
+	
+	private String notFound() {
+		return Manager.getConfig().getString("Commands.Info.NotFound");
 	}
 }

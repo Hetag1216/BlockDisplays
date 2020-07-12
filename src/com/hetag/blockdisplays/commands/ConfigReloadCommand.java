@@ -25,9 +25,6 @@ public class ConfigReloadCommand extends BDCommand {
 			e.printStackTrace();
 			sendMessage(sender, onReloadFail(), true);
 		}
-		if (args.size() < 0 || args.size() > 0) {
-			sender.sendMessage(getProperUsage());
-		}
 	}
 
 	public String onReload() {

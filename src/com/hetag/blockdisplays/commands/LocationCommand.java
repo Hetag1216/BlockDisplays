@@ -16,11 +16,17 @@ public class LocationCommand extends BDCommand {
 
 	@Override
 	public void execute(CommandSender sender, List<String> args) {
-		if (this.hasPermission(sender) || !correctLength(sender, 0, 3, 3)) {
+		if (this.hasPermission(sender)) {
 			if (args.size() == 3) {
 				String floatingBlock = args.get(0);
 				if (!FloatingBlock.exists(floatingBlock)) {
+					sendMessage(sender, notFound().replace("%name%", floatingBlock), true);
 					return;
+				} else {
+					if (!FloatingBlock.isAlive(floatingBlock)) {
+						sendMessage(sender, onInvalid().replace("%name%", floatingBlock), true);
+						return;
+					}
 				}
 				String coord = args.get(1);
 				if (!isNumeric(args.get(2))) {
@@ -43,11 +49,10 @@ public class LocationCommand extends BDCommand {
 				}
 				FloatingBlock.getFloatingBlockByUUID(floatingBlock).teleport(location);
 				FloatingBlock.updateLocation(floatingBlock);
-				sendMessage(sender, onEdit().replace("%name%", floatingBlock).replace("%coordinate%", coord).replace("%value%", String.valueOf(value)), true);
+				sendMessage(sender, onEdit().replace("%name%", floatingBlock).replace("%coord%", coord).replace("%value%", String.valueOf(value)), true);
 				
-			}
-			if (args.size() > 3 || args.size() < 3) {
-				sender.sendMessage(getProperUsage());
+			} else {
+				sendMessage(sender, this.getProperUsage(), false);
 			}
 		} else {
 			return;
@@ -55,10 +60,18 @@ public class LocationCommand extends BDCommand {
 	}
 
 	private String onEdit() {
-		return formatColors(Manager.getConfig().getString("Commands.Location.OnSuccess"));
+		return Manager.getConfig().getString("Commands.Location.OnEdit");
 	}
-	
+
 	private String notNumeric() {
-		return formatColors(Manager.getConfig().getString("Commands.Location.NotNumeric"));
+		return Manager.getConfig().getString("Commands.Location.NotNumeric");
+	}
+
+	private String notFound() {
+		return Manager.getConfig().getString("Commands.Location.NotFound");
+	}
+
+	private String onInvalid() {
+		return Manager.getConfig().getString("Commands.Location.OnInvalid");
 	}
 }

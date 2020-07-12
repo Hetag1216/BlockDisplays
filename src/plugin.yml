@@ -1,7 +1,7 @@
 name: BlockDisplays
 main: com.hetag.blockdisplays.BlockDisplays
 version: ${project.version}
-api-vetsion: 1.13.2
+api-version: 1.13
 authors: ['_Hetag1216_']
 commands:
   bd:

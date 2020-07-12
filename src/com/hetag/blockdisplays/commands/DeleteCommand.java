@@ -20,13 +20,15 @@ public class DeleteCommand extends BDCommand {
 		if (!hasPermission(sender) || !correctLength(sender, 0, 0, 1)) {
 			return;
 		}
-		String block = args.get(0);
-		if (deleteFloatingBlock(block)) {
-			this.sendMessage(sender, onDeleteSuccess().replace("%name%", block), true);
-			return;
-		} else {
-			this.sendMessage(sender, onDeleteFail().replace("%name%", block), true);
-			return;
+		if (args.size() == 1) {
+			String block = args.get(0);
+			if (deleteFloatingBlock(block)) {
+				this.sendMessage(sender, onDeleteSuccess().replace("%name%", block), true);
+				return;
+			} else {
+				this.sendMessage(sender, onDeleteFail().replace("%name%", block), true);
+				return;
+			}
 		}
 	}
 	
@@ -48,6 +50,6 @@ public class DeleteCommand extends BDCommand {
 	}
 	
 	public String onDeleteFail() {
-		return Manager.getConfig().getString("Commands.Delete.OnFail");
+		return Manager.getConfig().getString("Commands.Delete.NotFound");
 	}
 }
