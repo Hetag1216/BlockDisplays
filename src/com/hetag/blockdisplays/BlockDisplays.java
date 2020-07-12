@@ -13,6 +13,7 @@ import com.hetag.blockdisplays.reflection.BDProtocol;
 import com.hetag.blockdisplays.reflection.V1_13.Protocol_1_13;
 import com.hetag.blockdisplays.reflection.V1_14.Protocol_1_14;
 import com.hetag.blockdisplays.reflection.V1_15.Protocol_1_15;
+import com.hetag.blockdisplays.reflection.V1_16.Protocol_1_16;
 
 public class BlockDisplays extends JavaPlugin {
 	public static BlockDisplays plugin;
@@ -69,6 +70,9 @@ public class BlockDisplays extends JavaPlugin {
 		case "v1_15_R1":
 			protocol = new Protocol_1_15();
 			break;
+		case "v1_16_R1":
+			protocol = new Protocol_1_16();
+			break;
 		}
 		if (protocol.equals(new Protocol_1_13())) {
 			log.info("Using protocol for 1.13 versions compatibility!");
@@ -76,6 +80,8 @@ public class BlockDisplays extends JavaPlugin {
 			log.info("Using protocol for 1.14 versions compatibility!");
 		} else if (protocol.equals(new Protocol_1_15())) {
 			log.info("Using protocol for 1.15 versions compatibility!");
+		} else if (protocol.equals(new Protocol_1_16())) {
+			log.info("Using protocol for 1.16 versions compatibility!");
 		}
 	}
 
