@@ -9,17 +9,13 @@ import org.bukkit.World;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Husk;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 
 import com.hetag.blockdisplays.BlockDisplays;
 
 public class FloatingBlock {
 
 	public ArmorStand as;
-	public Husk husk;
 
 	public String name;
 	public Location location;
@@ -28,24 +24,19 @@ public class FloatingBlock {
 	public enum Sizes {
 		Tiny, Small, Normal;
 	}
-	
 
 	public FloatingBlock(String name, Location location, Material mat, Sizes size) {
 		this.name = name;
 		this.location = location;
         switch (size) {
 		case Tiny:
-			husk = (Husk) location.getWorld().spawnEntity(location, EntityType.HUSK);
-			husk.setBaby(true);
-			husk.setGravity(false);
-			husk.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 1, true));
-			husk.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, Integer.MAX_VALUE, 1, true));
-			husk.setSilent(true);
-			husk.setAI(false);
-			husk.setInvulnerable(true);
-			husk.setFireTicks(0);
-			ItemStack item = new ItemStack(mat, 1);
-			husk.getEquipment().setItemInMainHand(item);
+			as = (ArmorStand) location.getWorld().spawnEntity(location, EntityType.ARMOR_STAND);
+            as.setVisible(false);
+            as.setGravity(false);
+            as.setArms(true);
+        	as.setSmall(true);
+        	as.setInvulnerable(true);
+        	as.setItemInHand(new ItemStack(mat, 1));
 			break;
         case Small:
             as = (ArmorStand) location.getWorld().spawnEntity(location, EntityType.ARMOR_STAND);
@@ -68,11 +59,7 @@ public class FloatingBlock {
             double y = location.getY();
             double z = location.getZ();
             UUID uuid = null;
-            if (size == Sizes.Normal || size == Sizes.Small) {
-            	uuid = as.getUniqueId();
-            } else if (size == Sizes.Tiny) {
-            	uuid = husk.getUniqueId();
-            }
+            uuid = as.getUniqueId();
             String uuidString = uuid.toString();
     		
     		BlockDisplays.FloatingBlocks.getConfig().set("FloatingBlocks." + name + ".Location.World", location.getWorld().getName());
@@ -85,7 +72,7 @@ public class FloatingBlock {
 		if (size == Sizes.Normal || size == Sizes.Small) {
 			BlockDisplays.FloatingBlocks.getConfig().set("FloatingBlocks." + name + ".Material", as.getHelmet().getType().toString());
 		} else if (size == Sizes.Tiny) {
-			BlockDisplays.FloatingBlocks.getConfig().set("FloatingBlocks." + name + ".Material", husk.getEquipment().getItemInMainHand().getType().toString());
+			BlockDisplays.FloatingBlocks.getConfig().set("FloatingBlocks." + name + ".Material", as.getEquipment().getItemInMainHand().getType().toString());
 		}
 		BlockDisplays.FloatingBlocks.getConfig().set("FloatingBlocks." + name + ".UUID", uuidString);
         
@@ -142,6 +129,7 @@ public class FloatingBlock {
 		BlockDisplays.FloatingBlocks.getConfig().set("FloatingBlocks." + name + ".Location.Z", newLoc.getZ());
 		BlockDisplays.FloatingBlocks.getConfig().set("FloatingBlocks." + name + ".Location.Yaw", Math.round(newLoc.getYaw()));
 		BlockDisplays.FloatingBlocks.getConfig().set("FloatingBlocks." + name + ".Location.Pitch", Math.round(newLoc.getPitch()));
+		BlockDisplays.FloatingBlocks.saveConfig();
 	}
 	
 	public static Entity getFloatingBlockByUUID(String name) {
@@ -164,13 +152,15 @@ public class FloatingBlock {
 		}
 		return false;
 	}
-	/** 
-	 * Checks if the UUID of the name can be matched with the UUID of an existing entity in the world.
+	
+	/**
+	 * Checks whether or not the block exists in the world by matching the UUID.
 	 * @param name
-	 * @return 
+	 * @return
 	 */
 	public static boolean isAlive(String name) {
-		if (getFloatingBlockByUUID(name) != null) {
+		if (getWorld(name) != null) {
+			if (getFloatingBlockByUUID(name) != null)
 			return true;
 		}
 		return false;

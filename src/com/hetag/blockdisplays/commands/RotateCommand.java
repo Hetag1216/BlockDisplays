@@ -15,23 +15,24 @@ public class RotateCommand extends BDCommand {
 
 	@Override
 	public void execute(CommandSender sender, List<String> args) {
-		if (!hasPermission(sender) || !correctLength(sender, 0, 0, 2)) {
+		if (!hasPermission(sender) || !correctLength(sender, args.size(), 2, 2)) {
 			return;
 		}
 		if (args.size() == 2) {
 			String floatingBlock = args.get(0);
-				if (FloatingBlock.exists(floatingBlock) && FloatingBlock.isAlive(floatingBlock)) {
+			if (FloatingBlock.exists(floatingBlock)) {
+				if (FloatingBlock.isAlive(floatingBlock)) {
 					if (isNumeric(args.get(1))) {
 						float yaw = Float.valueOf(args.get(1));
 						FloatingBlock.rotateBlock(floatingBlock, yaw);
 						sendMessage(sender, onRotate().replace("%value%", args.get(1)), true);
 					}
+				} else {
+					sendMessage(sender, onInvalid().replace("%name%", floatingBlock), true);
+				}
 			} else {
-				sendMessage(sender, onInvalid().replace("%name%", floatingBlock), true);
+				sendMessage(sender, notFound().replace("%name%", floatingBlock), true);
 			}
-		}
-		if (args.size() > 2 || args.size() < 2) {
-			sender.sendMessage(getProperUsage());
 		}
 	}
 	
@@ -39,6 +40,10 @@ public class RotateCommand extends BDCommand {
 		return Manager.getConfig().getString("Commands.Rotate.OnRotate");
 	}
 
+	public String notFound() {
+		return Manager.getConfig().getString("Commands.Rotate.NotFound");
+	}
+	
 	public String onInvalid() {
 		return Manager.getConfig().getString("Commands.Rotate.OnInvalid");
 	}

@@ -20,7 +20,7 @@ public class ListCommand extends BDCommand {
 
 	@Override
 	public void execute(CommandSender sender, List<String> args) {
-		if (!hasPermission(sender)) {
+		if (!hasPermission(sender) || !correctLength(sender, 0, 0, 1)) {
 			return;
 		}
 		if (args.size() == 0) {
@@ -32,6 +32,7 @@ public class ListCommand extends BDCommand {
 				}
 			} else {
 				sendMessage(sender, notFound(), true);
+				return;
 			}
 			Collections.sort(strings);
 			Collections.reverse(strings);
@@ -55,9 +56,6 @@ public class ListCommand extends BDCommand {
 					sendMessage(sender, "&b" + formatted, false);
 				}
 			}
-		}
-		if (args.size() > 1) {
-			sendMessage(sender, this.getProperUsage(), false);
 		}
 	}
 	
