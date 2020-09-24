@@ -39,6 +39,8 @@ public class BlockDisplays extends JavaPlugin {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		Rotation.check();
+		Rotation.progressAllRotations();
 		log.info("Succesfully enabled BlockDisplays!");
 		log.info("-=-=-=-= -=- =-=-=-=-");
 	}

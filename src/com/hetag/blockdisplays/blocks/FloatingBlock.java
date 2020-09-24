@@ -69,6 +69,8 @@ public class FloatingBlock {
     		BlockDisplays.FloatingBlocks.getConfig().set("FloatingBlocks." + name + ".Location.Pitch", Math.round(location.getPitch()));
     		BlockDisplays.FloatingBlocks.getConfig().set("FloatingBlocks." + name + ".Location.Yaw", Math.round(location.getYaw()));
     		BlockDisplays.FloatingBlocks.getConfig().set("FloatingBlocks." + name + ".Size", size.toString());
+    		BlockDisplays.FloatingBlocks.getConfig().set("FloatingBlocks." + name + ".AutomaticRotation.Enabled", true);
+    		BlockDisplays.FloatingBlocks.getConfig().set("FloatingBlocks." + name + ".AutomaticRotation.Interval", 200);
 		if (size == Sizes.Normal || size == Sizes.Small) {
 			BlockDisplays.FloatingBlocks.getConfig().set("FloatingBlocks." + name + ".Material", as.getHelmet().getType().toString());
 		} else if (size == Sizes.Tiny) {

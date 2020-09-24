@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.bukkit.command.CommandSender;
 
+import com.hetag.blockdisplays.Rotation;
 import com.hetag.blockdisplays.configuration.Manager;
 
 public class ConfigReloadCommand extends BDCommand {
@@ -20,6 +21,8 @@ public class ConfigReloadCommand extends BDCommand {
 		try {
 		Manager.defaultConfig.saveConfig();
 		Manager.defaultConfig.reloadConfig();
+		Rotation.check();
+		Rotation.update(Rotation.getRotatingBlocks(), Rotation.getRotatingBlocksInterval());
 		sendMessage(sender, onReload(), true);
 		} catch (Exception e) {
 			e.printStackTrace();
