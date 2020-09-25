@@ -32,6 +32,10 @@ public class InfoCommand extends BDCommand {
 				sendMessage(sender, "&3Size:&b " + FloatingBlock.getSize(block), false);
 				sendMessage(sender, "&3UUID:&b " + FloatingBlock.getUUID(block), false);
 				sendMessage(sender, "&3Material:&b " + FloatingBlock.getMaterial(block), false);
+				sendMessage(sender, "&8« &bSettings &8» ", false);
+				sendMessage(sender, "&3AutomaticRotation:&b " +  FloatingBlock.isAutomaticallyRotating(block), false);
+				sendMessage(sender, "&3AutomaticRotation interval:&b " + FloatingBlock.getAutomaticRotationInterval(block), false);
+				sendMessage(sender, "&3Degrees:&b " + FloatingBlock.getAutomaticRotationDegrees(block), false);
 				return;
 				} else {
 					sendMessage(sender, onInvalid().replace("%name%", block), true);

@@ -41,11 +41,19 @@ public class BlockDisplays extends JavaPlugin {
 		}
 		Rotation.check();
 		Rotation.progressAllRotations();
+		log.info("Loaded " + Rotation.getActiveRotations() + " instance(s) to rotate.");
 		log.info("Succesfully enabled BlockDisplays!");
 		log.info("-=-=-=-= -=- =-=-=-=-");
 	}
 
 	public void onDisable() {
+		try {
+			FloatingBlocks.saveConfig();
+			Manager.defaultConfig.saveConfig();
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.warning("An error occurred while trying to save the configurations files beforet shutting down.");
+		}
 		log.info("Succesfully disabled BlockDisplays!");
 
 	}

@@ -46,7 +46,7 @@ public class Rotation {
 		for (Rotation rotations : ALL_BLOCKS) {
 			if (System.currentTimeMillis() >= rotations.getLastRotation() + rotations.getInterval()) {
 				if (FloatingBlock.exists(rotations.getName()) && FloatingBlock.isAlive(rotations.getName())) {
-				FloatingBlock.rotateBlock(rotations.getName(), 10);
+				FloatingBlock.rotateBlock(rotations.getName(), FloatingBlock.getAutomaticRotationDegrees(rotations.getName()));
 				rotations.setLastRotation(System.currentTimeMillis());
 				return;
 				}
@@ -108,5 +108,9 @@ public class Rotation {
 
 	public long setLastRotation(long lastRotation) {
 		return this.lastRotation = lastRotation;
+	}
+	
+	public static int getActiveRotations() {
+		return ALL_BLOCKS.size();
 	}
 }

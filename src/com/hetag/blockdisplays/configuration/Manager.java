@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import org.bukkit.configuration.file.FileConfiguration;
 
+import com.hetag.blockdisplays.commands.EditCommand;
 import com.hetag.blockdisplays.commands.Executor;
 
 public class Manager {
@@ -52,16 +53,34 @@ public class Manager {
 		config.addDefault("Commands.Info.NotFound", "&3%name%&b doesn't exist.");
 		config.addDefault("Commands.Info.OnInvalid", "&3%name%&b exists but cannot be found in the world, please re-create the block.");
 		
-		config.addDefault("Commands.Rotate.Description", "Rotates an existing block's face direction.");
-		config.addDefault("Commands.Rotate.OnRotate", "The block was succesfully rotated of &3%value%&b degree(s)");
-		config.addDefault("Commands.Rotate.NotFound", "&3%name%&b couldn't be found.");
-		config.addDefault("Commands.Rotate.OnInvalid", "&3%name%&b exists but cannot be found in the world, please re-create the block.");
+		config.addDefault("Commands.Edit.Description", "Edits the existing block depending on the given variable.");
+		config.addDefault("Commands.Edit.NotNumeric", "&3%value%&b is not numeric, specify a value in numbers.");
+		config.addDefault("Commands.Edit.NotFound", "&3%name%&b doesn't exist");
+		config.addDefault("Commands.Edit.OnInvalid", "&3%name%&b exists but cannot be found in the world, please re-create the block.");
+		config.addDefault("Commands.Edit.OnWrongArgument", "The provided argument '&3%argument%&b' is either wrong or invalid.");
+		config.addDefault("Commands.Edit.Location.OnEdit", "Succesfully edited &3%coord% &bby &3%value%&b for &3%name%&b.");
+		config.addDefault("Commands.Edit.Rotate.OnEdit", "The block was succesfully rotated of &3%value%&b degree(s).");
+		config.addDefault("Commands.Edit.Settings.OnEdit.AutomaticRotation.Status", "Automatic rotation has been set to &3%value%&b for &3%name%&b.");
+		config.addDefault("Commands.Edit.Settings.OnEdit.AutomaticRotation.Interval", "Automatic rotation interval has been set to &3%value%&bms for &3%name%&b.");
+		config.addDefault("Commands.Edit.Settings.OnEdit.AutomaticRotation.Degrees", "Automatic rotation degree(s) have been set to &3%value%&b for &3%name%&b.");
+		ArrayList<String> usageDescription = new ArrayList<String>();
+		EditCommand.usageDescription = usageDescription;
+		config.addDefault("Commands.Edit.UsageDescription", usageDescription);
+		usageDescription.add("&bProper Usage: /bd edit <name> <variable> <extra arguments...");
+		usageDescription.add("");
+		usageDescription.add("&bAvailable variables: &3Location, Rotate, Settings.");
+		usageDescription.add("");
+		usageDescription.add("&bLocation usage: /bd edit <name> Location <coord> <value>");
+		usageDescription.add("&bAvailable coords' inputs: &3x&b, &3y&b, &3z");
+		usageDescription.add("");
+		usageDescription.add("&bRotate usage: /bd edit <name> Rotate <value>");
+		usageDescription.add("");
+		usageDescription.add("&bSettings usage: /bd edit <name> Settings <setting> <value>");
+		usageDescription.add("&bAvailable settings: &3AutomaticRotation&b, &3Interval&b, &3Degrees.");
+		usageDescription.add("&bThe value for the &3AutomaticRotation&b setting must be &atrue&b or &cfalse&b.");
+		usageDescription.add("&bThe values for the &3Interval&b setting must be a set number determined in milliseconds. - &8(1000 = 1 second)");
+		usageDescription.add("&bThe values for the &3Degrees&b setting can be any number which determines the block's facing angles.");
 		
-		config.addDefault("Commands.Location.Description", "Edits the location of an existing floating block.");
-		config.addDefault("Commands.Location.OnEdit", "Succesfully edited &3%coord% &bby &3%value%&b for &3%name%&b.");
-		config.addDefault("Commands.Location.NotNumeric", "&3%value%&b is not numeric, specify a value in numbers.");
-		config.addDefault("Commands.Location.NotFound", "&3%name%&b doesn't exist");
-		config.addDefault("Commands.Location.OnInvalid", "&3%name%&b exists but cannot be found in the world, please re-create the block.");
 		
 		config.addDefault("Commands.Teleport.Description", "Teleports an existing block to player's position.");
 		config.addDefault("Commands.Teleport.OnTeleport", "&3%name% &bwas succesfully teleported.");

@@ -6,7 +6,7 @@ C:\Users\dario\OneDrive\Desktop\Developing\Workspace\BlockDisplays\src\com\hetag
 C:\Users\dario\OneDrive\Desktop\Developing\Workspace\BlockDisplays\src\com\hetag\blockdisplays\commands\DeleteCommand.java
 C:\Users\dario\OneDrive\Desktop\Developing\Workspace\BlockDisplays\src\com\hetag\blockdisplays\BlockDisplays.java
 C:\Users\dario\OneDrive\Desktop\Developing\Workspace\BlockDisplays\src\com\hetag\blockdisplays\commands\Executor.java
-C:\Users\dario\OneDrive\Desktop\Developing\Workspace\BlockDisplays\src\com\hetag\blockdisplays\commands\LocationCommand.java
+C:\Users\dario\OneDrive\Desktop\Developing\Workspace\BlockDisplays\src\com\hetag\blockdisplays\commands\EditCommand.java
 C:\Users\dario\OneDrive\Desktop\Developing\Workspace\BlockDisplays\src\com\hetag\blockdisplays\reflection\BDProtocol.java
 C:\Users\dario\OneDrive\Desktop\Developing\Workspace\BlockDisplays\src\com\hetag\blockdisplays\reflection\V1_15\Protocol_1_15.java
 C:\Users\dario\OneDrive\Desktop\Developing\Workspace\BlockDisplays\src\com\hetag\blockdisplays\commands\TeleportCommand.java
@@ -15,7 +15,6 @@ C:\Users\dario\OneDrive\Desktop\Developing\Workspace\BlockDisplays\src\com\hetag
 C:\Users\dario\OneDrive\Desktop\Developing\Workspace\BlockDisplays\src\com\hetag\blockdisplays\commands\HelpCommand.java
 C:\Users\dario\OneDrive\Desktop\Developing\Workspace\BlockDisplays\src\com\hetag\blockdisplays\commands\InfoCommand.java
 C:\Users\dario\OneDrive\Desktop\Developing\Workspace\BlockDisplays\src\com\hetag\blockdisplays\commands\VersionCommand.java
-C:\Users\dario\OneDrive\Desktop\Developing\Workspace\BlockDisplays\src\com\hetag\blockdisplays\commands\RotateCommand.java
 C:\Users\dario\OneDrive\Desktop\Developing\Workspace\BlockDisplays\src\com\hetag\blockdisplays\configuration\Manager.java
 C:\Users\dario\OneDrive\Desktop\Developing\Workspace\BlockDisplays\src\com\hetag\blockdisplays\reflection\V1_16\Protocol_1_16.java
 C:\Users\dario\OneDrive\Desktop\Developing\Workspace\BlockDisplays\src\com\hetag\blockdisplays\blocks\FloatingBlock.java

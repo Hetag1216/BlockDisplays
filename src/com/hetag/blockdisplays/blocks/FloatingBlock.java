@@ -70,7 +70,8 @@ public class FloatingBlock {
     		BlockDisplays.FloatingBlocks.getConfig().set("FloatingBlocks." + name + ".Location.Yaw", Math.round(location.getYaw()));
     		BlockDisplays.FloatingBlocks.getConfig().set("FloatingBlocks." + name + ".Size", size.toString());
     		BlockDisplays.FloatingBlocks.getConfig().set("FloatingBlocks." + name + ".AutomaticRotation.Enabled", true);
-    		BlockDisplays.FloatingBlocks.getConfig().set("FloatingBlocks." + name + ".AutomaticRotation.Interval", 200);
+    		BlockDisplays.FloatingBlocks.getConfig().set("FloatingBlocks." + name + ".AutomaticRotation.Interval", 500);
+    		BlockDisplays.FloatingBlocks.getConfig().set("FloatingBlocks." + name + ".AutomaticRotation.Degrees", 20);
 		if (size == Sizes.Normal || size == Sizes.Small) {
 			BlockDisplays.FloatingBlocks.getConfig().set("FloatingBlocks." + name + ".Material", as.getHelmet().getType().toString());
 		} else if (size == Sizes.Tiny) {
@@ -112,8 +113,21 @@ public class FloatingBlock {
 	public static double getYaw(String name) {
 		return BlockDisplays.FloatingBlocks.getConfig().getDouble("FloatingBlocks." + name + ".Location.Yaw");
 	}
+	
 	public static double getPitch(String name) {
 		return BlockDisplays.FloatingBlocks.getConfig().getDouble("FloatingBlocks." + name + ".Location.Pitch");
+	}
+	
+	public static boolean isAutomaticallyRotating(String name) {
+		return BlockDisplays.FloatingBlocks.getConfig().getBoolean("FloatingBlocks." + name + ".AutomaticRotation.Enabled");
+	}
+	
+	public static long getAutomaticRotationInterval(String name) {
+		return BlockDisplays.FloatingBlocks.getConfig().getLong("FloatingBlocks." + name + ".AutomaticRotation.Interval");
+	}
+	
+	public static float getAutomaticRotationDegrees(String name) {
+		return BlockDisplays.FloatingBlocks.getConfig().getLong("FloatingBlocks." + name + ".AutomaticRotation.Degrees");
 	}
 	
 	public static void rotateBlock(String name, float yaw) {

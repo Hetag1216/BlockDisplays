@@ -30,11 +30,10 @@ public class Executor {
 		new DeleteCommand();
 		new ListCommand();
 		new VersionCommand();
-		new RotateCommand();
 		new TeleportCommand();
 		new ConfigReloadCommand();
 		new InfoCommand();
-		new LocationCommand();
+		new EditCommand();
 		help = Manager.getConfig().getStringList("Commands.HelpLines");
 
 		CommandExecutor exe = new CommandExecutor() {
