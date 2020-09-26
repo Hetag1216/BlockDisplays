@@ -8,21 +8,21 @@ Easily create miniature blocks to decorate your server!
 • /bd help <Command> - Shows general help or specific help when a command is specified
 • /bd create <Name> <Material> <Size> - Creates a miniature block at player's location
 • /bd delete <Name> - Deletes an existing miniature block.
-• /bd rotate <Name> <Value> - Rotates the miniature block's facing for the specified value
+• /bd edit <Name> <Variable> <Extra arguments...> - lets you edit a block's location, facing/rotation and settings.
 • /bd teleport <Name> - Teleports an existing miniature block to player's location
 • /bd list - Shows a list of all existing miniature blocks
 • /bd version - Shows the current plugin's version and details
-• /bd info <name> - Shows details for a specific existing block
+• /bd info <Name> - Shows all details for a specific existing block
 
 ![Core Icon](https://cdn.discordapp.com/attachments/595364073147728025/687818072739807250/BDPermissions.jpg)
 • blockdisplays.command.help - Gives access to /bd help command
 • blockdisplays.command.create - Gives access to /bd create command
 • blockdisplays.command.delete - Gives access to /bd delete command
-• blockdisplays.command.rotate - Gives acces to /bd rotate command
 • blockdisplays.command.teleport - Gives access to /bd teleport command
 • blockdisplays.command.list - Gives access to /bd list command
 • blockdisplays.command.version - Gives access to /bd version command
-• blockdisplays.command.info - Gives access to /bd info command
+• blockdisplays.command.info- Gives access to /bd info command
+• blockdisplays.command.edit - Gives access to /bd edit command
 
 ![Core Icon](https://cdn.discordapp.com/attachments/595364073147728025/687818076506423421/Untitled_design_1.jpg)
 ![Core Icon](https://cdn.discordapp.com/attachments/595364073147728025/688063537498816512/2020-03-13_00.51.45-1.png)
