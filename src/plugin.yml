@@ -18,8 +18,7 @@ permissions:
       blockdisplays.command.help: true
       blockdisplays.command.version: true
       blockdisplays.command.reload: true
-      blockdisplays.command.rotate: true
       blockdisplays.command.teleport: true
+      blockdisplays.command.edit: true
       blockdisplays.command.info: true
-      blockdisplays.command.location: true
       
