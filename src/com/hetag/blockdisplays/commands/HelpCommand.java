@@ -6,23 +6,15 @@ import java.util.List;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.file.FileConfiguration;
 
 import com.hetag.blockdisplays.configuration.Manager;
 
 public class HelpCommand extends BDCommand {
-	private String required;
-	private String optional;
 	private String invalidTopic;
-	private static String path = "Commands.Help.";
-	public static FileConfiguration config = Manager.getConfig();
 
 	public HelpCommand() {
-		super("help", "/bd help <Page/Topic>", config.getString(path + "Description"), new String[] { "help", "h" });
-
-		this.required = ChatColor.translateAlternateColorCodes('&', config.getString(path + "Required"));
-		this.optional = ChatColor.translateAlternateColorCodes('&', config.getString(path + "Optional"));
-		this.invalidTopic = ChatColor.translateAlternateColorCodes('&', config.getString(path + "InvalidTopic"));
+		super("help", "/bd help <Page/Topic>", Manager.getConfig().getString("Commands.Help.Description"), new String[] { "help", "h" });
+		this.invalidTopic = Manager.getConfig().getString("Commands.Help.InvalidTopic");
 	}
 
 	public void execute(CommandSender sender, List<String> args) {
@@ -39,7 +31,8 @@ public class HelpCommand extends BDCommand {
 			Collections.sort(strings);
 			Collections.reverse(strings);
 			Collections.reverse(strings);
-			for (String s : getPage(strings, ChatColor.GRAY + "Commands: <" + this.required + "> [" + this.optional + "]", 1, false)) {
+
+			for (String s : getPage(strings, 1, false)) {
 				sender.sendMessage(ChatColor.GREEN + s);
 			}
 			return;
@@ -50,7 +43,7 @@ public class HelpCommand extends BDCommand {
 			for (BDCommand command : instances.values()) {
 				strings.add(command.getProperUse());
 			}
-			for (String s : getPage(strings, ChatColor.GRAY + "Commands: <" + this.required + "> [" + this.optional + "]", Integer.valueOf(arg).intValue(), true)) {
+			for (String s : getPage(strings, Integer.valueOf(arg).intValue(), true)) {
 				sender.sendMessage(ChatColor.GREEN + s);
 			}
 		} else if (instances.keySet().contains(arg)) {
@@ -58,5 +51,17 @@ public class HelpCommand extends BDCommand {
 		} else {
 			sender.sendMessage(ChatColor.RED + this.invalidTopic);
 		}
+	}
+	
+	@Override
+	protected List<String> getTabCompletion(final CommandSender sender, final List<String> args) {
+		List<String> list = new ArrayList<String>();
+		if (!sender.hasPermission("blockdisplays.command.help")) {
+			return new ArrayList<String>();
+		}
+		for (String commands : instances.keySet()) {
+			list.add(commands);
+		}
+		return list;
 	}
 }

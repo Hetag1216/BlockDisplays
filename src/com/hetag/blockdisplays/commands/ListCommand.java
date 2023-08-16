@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.ConfigurationSection;
 
@@ -36,7 +35,7 @@ public class ListCommand extends BDCommand {
 			}
 			Collections.sort(strings);
 			Collections.reverse(strings);
-			for (String formatted : getPage(strings, ChatColor.BOLD + "" + ChatColor.AQUA + "Existing Blocks", 1, true)) {
+			for (String formatted : getPage(strings, 1, true)) {
 				sendMessage(sender, "&b" + formatted, false);
 			}
 			return;
@@ -52,7 +51,7 @@ public class ListCommand extends BDCommand {
 				} else {
 					sendMessage(sender, notFound(), true);
 				}
-				for (String formatted : getPage(strings, ChatColor.BOLD + "" + ChatColor.AQUA + "Existing Blocks", Integer.valueOf(arg), true)) {
+				for (String formatted : getPage(strings, Integer.valueOf(arg), true)) {
 					sendMessage(sender, "&b" + formatted, false);
 				}
 			}

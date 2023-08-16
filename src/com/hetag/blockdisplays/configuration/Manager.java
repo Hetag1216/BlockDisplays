@@ -27,9 +27,6 @@ public class Manager {
 		Executor.help = helpLines;
 		config.addDefault("Commands.HelpLines", helpLines);
 		helpLines.add("&8/&3bd &ahelp &7Display commands help.");	
-		
-		config.addDefault("Commands.Help.Required", "&7Required");
-		config.addDefault("Commands.Help.Optional", "&7Optional");
 		config.addDefault("Commands.Help.InvalidTopic", "&7Please specify a valid topic.");
 		config.addDefault("Commands.Help.ProperUsage", "&3Proper usage: &b&o");
 		config.addDefault("Commands.Help.Description", "Shows information about a command.");
@@ -39,8 +36,8 @@ public class Manager {
 		config.addDefault("Commands.Create.Description", "Creates a block at the player's standing position.");
 		config.addDefault("Commands.Create.OnCreate", "Succesfully created &3%name%&b.");
 		config.addDefault("Commands.Create.AlreadyExists", "A block with the name of &3%name%&b already exists.");
-		config.addDefault("Commands.Create.MaterialUnMatch", "&3%material%&b couldn't be matched, please use a different material type.");
-		config.addDefault("Commands.Create.SizeUnMatch", "&3%size%&b couldn't be found, please choose a size between these: &3%possibleSizes%&b.");
+		config.addDefault("Commands.Create.MaterialMismatch", "&3%material%&b couldn't be matched, please use a different material type.");
+		config.addDefault("Commands.Create.SizeMismatch", "&3%size%&b couldn't be found, please choose a size between these: &3%possibleSizes%&b.");
 		
 		config.addDefault("Commands.Delete.Description", "Deletes an existing block.");
 		config.addDefault("Commands.Delete.OnSuccess", "&3%name% &bwas succesfully removed.");

@@ -22,7 +22,6 @@ public class VersionCommand extends BDCommand {
 		sendMessage(sender, "&3Version: &b" + BlockDisplays.getInstance().getDescription().getVersion(), false);
 		sendMessage(sender, "&3Author: &b" + BlockDisplays.getInstance().getDescription().getAuthors().toString().replace("[", "").toString().replace("]", ""), false);
 		sendMessage(sender, "&3Compatible Minecraft Version(s): &b 1.13 - 1.14 - 1.15 - 1.16", false);
-		sendMessage(sender, "&3Using Protocol: &b" + BlockDisplays.getProtocol().toString(), false);
 		sendMessage(sender, "", false);
 		sendMessage(sender, "&8« &bUseful links &8»", false);
 		sendMessage(sender, "&aSpigot page &8» &bhttps://www.spigotmc.org/resources/blockdisplays-decorate-your-server-1-13-x-1-14-x-1-15-x-1-16-x.76007/", false);
