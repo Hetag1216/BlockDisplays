@@ -1,4 +1,4 @@
-package com.hetag.blockdisplays.configuration;
+package com.hedario.blockdisplays.configuration;
 
 import java.util.ArrayList;
 import java.util.Arrays;

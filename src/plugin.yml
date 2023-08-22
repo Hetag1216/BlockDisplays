@@ -1,8 +1,8 @@
 name: BlockDisplays
-main: com.hetag.blockdisplays.BlockDisplays
+main: com.hedario.blockdisplays.BlockDisplays
 version: ${project.version}
-api-version: 1.13
-authors: ['_Hetag1216_']
+api-version: 1.18
+authors: ['Hedario']
 commands:
   bd:
     usage: /<command>

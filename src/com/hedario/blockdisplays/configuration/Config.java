@@ -1,11 +1,11 @@
-package com.hetag.blockdisplays.configuration;
+package com.hedario.blockdisplays.configuration;
 
 import java.io.File;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-import com.hetag.blockdisplays.BlockDisplays;
+import com.hedario.blockdisplays.BlockDisplays;
 
 public class Config {
 	private final BlockDisplays plugin;
