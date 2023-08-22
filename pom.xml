@@ -12,24 +12,30 @@
 			<id>spigot-repo</id>
 			<url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
 		</repository>
+		<repository>
+			<id>Plugin Metrics</id>
+			<url>http://repo.mcstats.org/content/repositories/public</url>
+		</repository>
 	</repositories>
+
 	<!-- DEPENDENCIES -->
 	<dependencies>
 		<!-- Spigot API -->
 		<dependency>
 			<groupId>org.spigotmc</groupId>
 			<artifactId>spigot-api</artifactId>
-			<version>1.13.2-R0.1-SNAPSHOT</version>
+			<version>1.18.2-R0.1-SNAPSHOT</version>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
-	
-		<pluginRepositories>
+
+	<pluginRepositories>
 		<pluginRepository>
 			<id>maven-snapshots</id>
 			<url>https://repository.apache.org/content/repositories/snapshots/</url>
 		</pluginRepository>
 	</pluginRepositories>
+
 	<build>
 		<defaultGoal>clean package install</defaultGoal>
 		<finalName>${project.name}-${project.version}</finalName>
@@ -67,7 +73,8 @@
 				<artifactId>maven-shade-plugin</artifactId>
 				<version>3.3.0-SNAPSHOT</version>
 				<configuration>
-					<dependencyReducedPomLocation>${project.build.directory}/dependency-reduced-pom.xml</dependencyReducedPomLocation>
+					<dependencyReducedPomLocation>
+						${project.build.directory}/dependency-reduced-pom.xml</dependencyReducedPomLocation>
 				</configuration>
 				<executions>
 					<execution>
