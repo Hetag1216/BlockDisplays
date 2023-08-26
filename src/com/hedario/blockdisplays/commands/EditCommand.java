@@ -70,16 +70,13 @@ public class EditCommand extends BDCommand {
 	        showUsageDescription(sender);
 	        return;
 	    }
-
+	    String coord = args.get(2);
+	    double value = Double.parseDouble(args.get(3));
 	    if (!isNumeric(args.get(3))) {
-	        sendMessage(sender, notNumeric().replace("%value%", args.get(2)), true);
+	        sendMessage(sender, notNumeric().replace("%value%", coord), true);
 	        return;
 	    }
-
-	    double value = Double.parseDouble(args.get(3));
 	    Location location = FloatingBlock.getLocation(name);
-	    String coord = args.get(2);
-
 	    if (coord.equalsIgnoreCase("x")) {
 	        location.add(value, 0, 0);
 	    } else if (coord.equalsIgnoreCase("y")) {
@@ -90,9 +87,7 @@ public class EditCommand extends BDCommand {
 	        sendMessage(sender, onWrongArgument().replace("%argument%", coord), true);
 	        return;
 	    }
-
-	    FloatingBlock.getFloatingBlockByUUID(name).teleport(location);
-	    FloatingBlock.updateLocation(name);
+	    FloatingBlock.updateLocation(name, location);
 	    sendMessage(sender, edit_loc().replace("%name%", name).replace("%coord%", coord).replace("%value%", String.valueOf(value)), true);
 	}
 
@@ -202,10 +197,9 @@ public class EditCommand extends BDCommand {
 				list.add("y");
 				list.add("z");
 			} else if (args.get(1).equalsIgnoreCase("rotate")) {
-				list.add("...");
-				list.add("20");
-				list.add("45");
-				list.add("90");
+				list.add("-45");
+				list.add("20.5348");
+				list.add("180");
 			} else if (args.get(1).equalsIgnoreCase("settings")) {
 				list.add("AutomaticRotation");
 				list.add("Degrees");
@@ -215,12 +209,16 @@ public class EditCommand extends BDCommand {
 			}
 		} else if (args.size() == 3) {
 			if (args.get(2).equalsIgnoreCase("x") || args.get(2).equalsIgnoreCase("y") || args.get(2).equalsIgnoreCase("z")) {
+				list.add("-1");
+				list.add("0.6");
 				list.add("2");
 			} else if (args.get(2).equalsIgnoreCase("automaticrotation")) {
 				list.add("true");
 				list.add("false");
 			} else if (args.get(2).equalsIgnoreCase("degrees")) {
-				list.add("43");
+				list.add("-45");
+				list.add("20.5348");
+				list.add("180");
 			} else if (args.get(2).equalsIgnoreCase("interval")) {
 				list.add("500");
 			} else {
