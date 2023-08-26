@@ -19,9 +19,7 @@ public class ConfigReloadCommand extends BDCommand {
 			return;
 		}
 		try {
-			Manager.defaultConfig.reloadConfig();
-			Manager.floatingBlocksConfig.reloadConfig();
-			new Manager();
+			Manager.reloadConfigs();
 			Rotation.init();
 			sendMessage(sender, "Loaded " + Rotation.getActiveRotations() + " instance(s) to rotate.", true);
 			sendMessage(sender, onReload(), true);
