@@ -32,7 +32,12 @@ public class HelpCommand extends BDCommand {
 			Collections.reverse(strings);
 
 			for (String s : getPage(strings, 1, false)) {
-				sendMessage(sender, "&a" + s, false);
+				if (!s.equalsIgnoreCase(getPage(strings, 1, false).get(0))) {
+					String start = s.substring(0, 3);
+					this.sendMessage(sender, "&3" + start + " &b" + s.substring(4, s.length()), false);
+				} else {
+					this.sendMessage(sender, getPage(strings, 1, false).get(0), false);
+				}
 			}
 			return;
 		}
@@ -42,8 +47,13 @@ public class HelpCommand extends BDCommand {
 			for (BDCommand command : instances.values()) {
 				strings.add(command.getProperUse());
 			}
-			for (String s : getPage(strings, Integer.valueOf(arg).intValue(), true)) {
-				sendMessage(sender, "&a" + s, false);
+			for (String s : getPage(strings, Integer.valueOf(arg), true)) {
+				if (!s.equalsIgnoreCase(getPage(strings, 1, false).get(0))) {
+					String start = s.substring(0, 3);
+					this.sendMessage(sender, "&3" + start + " &b" + s.substring(4, s.length()), false);
+				} else {
+					this.sendMessage(sender, getPage(strings, 1, false).get(0), false);
+				}
 			}
 		} else if (instances.keySet().contains(arg)) {
 			((BDCommand) instances.get(arg)).help(sender, true);
