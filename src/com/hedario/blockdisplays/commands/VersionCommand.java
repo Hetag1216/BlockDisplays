@@ -23,11 +23,10 @@ public class VersionCommand extends BDCommand {
 		sendMessage(sender, "&3API version &7» &b" + BlockDisplays.plugin.getDescription().getAPIVersion(), false);
 		sendMessage(sender, "&3Author &7» &b" + BlockDisplays.plugin.getDescription().getAuthors().toString().replace("[", "").toString().replace("]", ""), false);
 		sendMessage(sender, "&3Compatible Minecraft Version(s) &7» &b1.16.x, 1.17.x, 1.18.x, 1.19.x, 1.20.x", false);
-		sendMessage(sender, "&3AreaReloader's dependency &7» &b" + BlockDisplays.plugin.getDescription().getDepend().toString().replace("[", "").toString().replace("]", ""), false);
-		sendMessage(sender, "&3AreaReloader's Java requirements &7» &b Java 16+", false);
+		sendMessage(sender, "&3BlockDisplays' Java requirements &7» &b Java 16+", false);
 		sendMessage(sender, "&3System Java version &7» &b" + System.getProperty("java.version"), false);
 		sendMessage(sender, "", false);
-		sendMessage(sender, "&3Spigot page &7» &bhttps://www.spigotmc.org/resources/blockdisplays-decorate-your-server.76007/", false);
+		sendMessage(sender, "&3Spigot page &7» &bhttps://www.spigotmc.org/resources/blockdisplays.76007/", false);
 		sendMessage(sender, "&3Github &7» &bhttps://github.com/Hetag1216/BlockDisplays", false);
 		sendMessage(sender, "&3Check out my other resources at &7» &bhttps://www.spigotmc.org/members/_hetag1216_.243334/", false);
 		sendMessage(sender, "&3Discord &7» &bhttps://discord.gg/yqs9UJs", false);
