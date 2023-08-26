@@ -18,7 +18,6 @@ com\hedario\blockdisplays\configuration\Config.class
 com\hedario\blockdisplays\utils\Metrics$MetricsBase.class
 com\hedario\blockdisplays\commands\ConfigReloadCommand.class
 com\hedario\blockdisplays\commands\EditCommand.class
-com\hedario\blockdisplays\configuration\ConfigType.class
 com\hedario\blockdisplays\configuration\Manager.class
 com\hedario\blockdisplays\commands\Executor$1.class
 com\hedario\blockdisplays\FloatingBlock$1.class

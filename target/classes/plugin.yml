@@ -1,6 +1,6 @@
 name: BlockDisplays
 main: com.hedario.blockdisplays.BlockDisplays
-version: 1.4
+version: 1.5
 api-version: 1.18
 authors: ['Hedario']
 commands:
