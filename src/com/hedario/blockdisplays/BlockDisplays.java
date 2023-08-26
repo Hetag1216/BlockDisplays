@@ -45,7 +45,6 @@ public class BlockDisplays extends JavaPlugin {
 		} else {
 			log.info("Metrics will be disabled.");
 		}
-		log.info("Loaded " + Rotation.getActiveRotations() + " instance(s) to rotate.");
 		log.info("Succesfully enabled BlockDisplays!");
 		
 		log.info("-=-=-=-= -=- =-=-=-=-");
@@ -70,27 +69,23 @@ public class BlockDisplays extends JavaPlugin {
 	 */
 	private void checkForUpdates() {
 		new UpdateChecker(this, 76007).getVersion(version -> {
-			log.info("-=-=-=-= AreaReloader Updater =-=-=-=-");
+			log.info("-=-=-=-= BlockDisplays Updater =-=-=-=-");
 			if (this.getDescription().getVersion().equals(version)) {
 				log.info("You're running the latest version of the plugin!");
 			} else {
-				log.info("AreaReloader " + version + " is now available!");
-				log.info("You're running AreaReloader " + this.getDescription().getVersion());
-				log.info("DOWNLOAD IT AT: https://www.spigotmc.org/resources/areareloader.70655/");
+				log.info("BlockDisplays " + version + " is now available!");
+				log.info("You're running BlockDisplays " + this.getDescription().getVersion());
+				log.info("DOWNLOAD IT AT: https://www.spigotmc.org/resources/blockdisplays.76007/");
 			}
 			log.info("-=-=-=-= -=- =-=-=-=-");
 		});
 	}
 	public void onDisable() {
-		try {
-			Manager.defaultConfig.saveConfig();
-			Manager.floatingBlocksConfig.saveConfig();
-		} catch (Exception e) {
-			e.printStackTrace();
-			log.warning("An error occurred while trying to save the configurations files before shutting down.");
+		if (!getInstance().getServer().getScheduler().getActiveWorkers().isEmpty()) {
+			getInstance().getServer().getScheduler().cancelTasks(getInstance());
+			getInstance().getServer().getScheduler().getActiveWorkers().clear();
 		}
 		log.info("Succesfully disabled BlockDisplays!");
-
 	}
 
 	public static BlockDisplays getInstance() {
