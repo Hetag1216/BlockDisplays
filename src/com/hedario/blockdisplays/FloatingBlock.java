@@ -75,7 +75,7 @@ public class FloatingBlock {
 		} else if (size == Sizes.Tiny) {
 			Manager.getFloatingBlocksConfig().set("FloatingBlocks." + name + ".Material", as.getEquipment().getItemInMainHand().getType().toString());
 		}
-		Manager.getFloatingBlocksConfig().set("FloatingBlocks." + name + ".UUID", as.getUniqueId());
+		Manager.getFloatingBlocksConfig().set("FloatingBlocks." + name + ".UUID", as.getUniqueId().toString());
 		Manager.floatingBlocksConfig.saveConfig();
 	}
 	
@@ -83,16 +83,16 @@ public class FloatingBlock {
 		return Bukkit.getServer().getWorld(Manager.getFloatingBlocksConfig().getString("FloatingBlocks." + name + ".Location.World"));
 	}
 	
-	public static Integer getX(String name) {
-		return Integer.valueOf(Manager.getFloatingBlocksConfig().getInt("FloatingBlocks." + name + ".Location.X"));
+	public static float getX(String name) {
+		return (float) Manager.getFloatingBlocksConfig().getDouble("FloatingBlocks." + name + ".Location.X");
 	}
 	
-	public static Integer getY(String name) {
-		return Integer.valueOf(Manager.getFloatingBlocksConfig().getInt("FloatingBlocks." + name + ".Location.Y"));
+	public static float getY(String name) {
+		return (float) Manager.getFloatingBlocksConfig().getDouble("FloatingBlocks." + name + ".Location.Y");
 	}
 	
-	public static Integer getZ(String name) {
-		return Integer.valueOf(Manager.getFloatingBlocksConfig().getInt("FloatingBlocks." + name + ".Location.Z"));
+	public static float getZ(String name) {
+		return (float) Manager.getFloatingBlocksConfig().getDouble("FloatingBlocks." + name + ".Location.Z");
 	}
 	
 	public static Material getMaterial(String name) {
@@ -124,7 +124,7 @@ public class FloatingBlock {
 	}
 	
 	public static float getAutomaticRotationDegrees(String name) {
-		return Manager.getFloatingBlocksConfig().getLong("FloatingBlocks." + name + ".AutomaticRotation.Degrees");
+		return (float) Manager.getFloatingBlocksConfig().getDouble("FloatingBlocks." + name + ".AutomaticRotation.Degrees");
 	}
 	
 	public static void rotateBlock(String name, float yaw) {
@@ -134,14 +134,13 @@ public class FloatingBlock {
 		entity.teleport(loc);
 	}
 	
-	public static void updateLocation(String name) {
-		Entity block = getFloatingBlockByUUID(name);
-		Location newLoc = block.getLocation();
-		Manager.getFloatingBlocksConfig().set("FloatingBlocks." + name + ".Location.X", newLoc.getX());
-		Manager.getFloatingBlocksConfig().set("FloatingBlocks." + name + ".Location.Y", newLoc.getY());
-		Manager.getFloatingBlocksConfig().set("FloatingBlocks." + name + ".Location.Z", newLoc.getZ());
-		Manager.getFloatingBlocksConfig().set("FloatingBlocks." + name + ".Location.Yaw", Math.round(newLoc.getYaw()));
-		Manager.getFloatingBlocksConfig().set("FloatingBlocks." + name + ".Location.Pitch", Math.round(newLoc.getPitch()));
+	public static void updateLocation(String name, final Location location) {
+		FloatingBlock.getFloatingBlockByUUID(name).teleport(location);
+		Manager.getFloatingBlocksConfig().set("FloatingBlocks." + name + ".Location.X", location.getX());
+		Manager.getFloatingBlocksConfig().set("FloatingBlocks." + name + ".Location.Y", location.getY());
+		Manager.getFloatingBlocksConfig().set("FloatingBlocks." + name + ".Location.Z", location.getZ());
+		Manager.getFloatingBlocksConfig().set("FloatingBlocks." + name + ".Location.Yaw", Math.round(location.getYaw()));
+		Manager.getFloatingBlocksConfig().set("FloatingBlocks." + name + ".Location.Pitch", Math.round(location.getPitch()));
 		Manager.floatingBlocksConfig.saveConfig();
 	}
 	
@@ -188,9 +187,9 @@ public class FloatingBlock {
 	}
 
 	public static Location getLocation(String name) {
-		int x = getX(name);
-		int y = getY(name);
-		int z = getZ(name);
+		float x = getX(name);
+		float y = getY(name);
+		float z = getZ(name);
 		World w = getWorld(name);
 		
 		return new Location(w, x, y, z);
