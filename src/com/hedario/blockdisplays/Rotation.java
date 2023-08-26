@@ -19,12 +19,16 @@ public class Rotation {
 	}
 	
 	public static void init() {
+		// instantiate/reload tasks and cache
 		BlockDisplays.getInstance().getServer().getScheduler().cancelTasks(BlockDisplays.getInstance());
 		if (!ALL_BLOCKS.isEmpty())
 			ALL_BLOCKS.clear();
+		// fetch blocks and queue instance
 		check();
-		if (getRotatingBlocks() != null)
+		// instantiate task
+		if (!getRotatingBlocks().isEmpty()) {
 			progressAll();
+		}
 		BlockDisplays.log.info("Loaded " + Rotation.getActiveRotations() + " instance(s) to rotate.");
 	}
 
@@ -36,6 +40,8 @@ public class Rotation {
 	}
 
 	public static void update(String blockName, long interval) {
+		if (ALL_BLOCKS.isEmpty())
+			init();
 		removeFromName(blockName);
 		if (Manager.getFloatingBlocksConfig().contains("FloatingBlocks")) {
 			if (Manager.getFloatingBlocksConfig().getBoolean("FloatingBlocks." + blockName + ".AutomaticRotation.Enabled")) {
