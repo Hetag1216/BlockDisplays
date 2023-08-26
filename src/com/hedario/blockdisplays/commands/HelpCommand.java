@@ -47,6 +47,9 @@ public class HelpCommand extends BDCommand {
 			}
 		} else if (instances.keySet().contains(arg)) {
 			((BDCommand) instances.get(arg)).help(sender, true);
+			if (arg.equalsIgnoreCase("edit")) {
+				EditCommand.showUsageDescription(sender);
+			}
 		} else {
 			sendMessage(sender, this.invalidTopic, false);
 		}

@@ -15,7 +15,7 @@ public class EditCommand extends BDCommand {
 	public static List<String> usageDescription;
 
 	public EditCommand() {
-		super("edit", "/bd edit", formatColors(Manager.getConfig().getString("Commands.Edit.Description")), new String[] { "edit", "edi" });
+		super("edit", "/bd edit", Manager.getConfig().getString("Commands.Edit.Description"), new String[] { "edit", "edi" });
 		usageDescription = Manager.getConfig().getStringList("Commands.Edit.UsageDescription");
 	}
 	@Override
@@ -47,9 +47,9 @@ public class EditCommand extends BDCommand {
 	    }
 	}
 
-	private void showUsageDescription(CommandSender sender) {
+	public static void showUsageDescription(CommandSender sender) {
 	    for (String line : usageDescription) {
-	        sendMessage(sender, line, false);
+	        BDCommand.pSendMessage(sender, line, false);
 	    }
 	}
 
