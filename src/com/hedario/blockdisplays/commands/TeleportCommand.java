@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
 import com.hedario.blockdisplays.FloatingBlock;
@@ -26,9 +25,7 @@ public class TeleportCommand extends BDCommand {
 			String block = args.get(0);
 			if (FloatingBlock.exists(block)) {
 				if (FloatingBlock.isAlive(block)) {
-					Entity blocky = FloatingBlock.getFloatingBlockByUUID(args.get(0));
-					blocky.teleport(p.getLocation());
-					FloatingBlock.updateLocation(args.get(0));
+					FloatingBlock.updateLocation(block, p.getLocation());
 					sendMessage(sender, onTeleport().replace("%name%", args.get(0)), true);
 					return;
 				} else {
