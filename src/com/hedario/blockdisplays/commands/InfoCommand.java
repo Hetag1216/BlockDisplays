@@ -16,7 +16,7 @@ public class InfoCommand extends BDCommand {
 
 	@Override
 	public void execute(CommandSender sender, List<String> args) {
-		if (!hasPermission(sender) || !correctLength(sender, args.size(), 0, 1)) {
+		if (!hasPermission(sender) || !correctLength(sender, args.size(), 1, 1)) {
 			return;
 		}
 		String block = args.get(0);
