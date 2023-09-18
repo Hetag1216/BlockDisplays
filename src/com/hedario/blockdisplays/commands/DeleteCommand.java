@@ -17,18 +17,16 @@ public class DeleteCommand extends BDCommand {
 
 	@Override
 	public void execute(CommandSender sender, List<String> args) {
-		if (!hasPermission(sender) || !correctLength(sender, 0, 0, 1)) {
+		if (!hasPermission(sender) || !correctLength(sender, args.size(), 1, 1)) {
 			return;
 		}
-		if (args.size() == 1) {
-			String block = args.get(0);
-			if (deleteFloatingBlock(block)) {
-				this.sendMessage(sender, onDeleteSuccess().replace("%name%", block), true);
-				return;
-			} else {
-				this.sendMessage(sender, onDeleteFail().replace("%name%", block), true);
-				return;
-			}
+		String block = args.get(0);
+		if (deleteFloatingBlock(block)) {
+			this.sendMessage(sender, onDeleteSuccess().replace("%name%", block), true);
+			return;
+		} else {
+			this.sendMessage(sender, onDeleteFail().replace("%name%", block), true);
+			return;
 		}
 	}
 	
