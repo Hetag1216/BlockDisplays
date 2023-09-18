@@ -56,7 +56,6 @@ public class Rotation {
 				if (FloatingBlock.validateFloatingBlock(rotations.getName())) {
 					FloatingBlock.rotateBlock(rotations.getName(), FloatingBlock.getAutomaticRotationDegrees(rotations.getName()));
 					rotations.setLastRotation(System.currentTimeMillis());
-					return;
 				}
 			}
 		}
