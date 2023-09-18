@@ -4,6 +4,7 @@
 Easily create miniature blocks to decorate your server!
 
 ![Core Icon](https://cdn.discordapp.com/attachments/595364073147728025/687818074618986522/BDCommands.jpg)
+
 • /bd - Shows plugin's help lines
 
 • /bd help <command> - Shows general help or specific help when a command is specified
@@ -23,6 +24,7 @@ Easily create miniature blocks to decorate your server!
 • /bd teleport <name> <to|here> - Teleports a player to a block or a block to a player's location.
 
 ![Core Icon](https://cdn.discordapp.com/attachments/595364073147728025/687818072739807250/BDPermissions.jpg)
+
 • blockdisplays.command.help - Gives access to /bd help command
 
 • blockdisplays.command.create - Gives access to /bd create command
