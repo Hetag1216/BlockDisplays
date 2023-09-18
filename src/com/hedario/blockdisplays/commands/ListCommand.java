@@ -18,7 +18,7 @@ public class ListCommand extends BDCommand {
 
 	@Override
 	public void execute(CommandSender sender, List<String> args) {
-		if (!hasPermission(sender) || !correctLength(sender, 0, 0, 1)) {
+		if (!hasPermission(sender) || !correctLength(sender, args.size(), 0, 1)) {
 			return;
 		}
 		if (args.size() == 0) {
@@ -58,6 +58,6 @@ public class ListCommand extends BDCommand {
 	}
 	
 	public String notFound() {
-		return Manager.getConfig().getString("Commands.List.NotFound");
+		return Manager.getConfig().getString("Settings.Language.BlockNotFound");
 	}
 }

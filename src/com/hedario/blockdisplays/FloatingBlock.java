@@ -8,11 +8,13 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
 
+import com.hedario.blockdisplays.commands.BDCommand;
 import com.hedario.blockdisplays.configuration.Manager;
 
 public class FloatingBlock {
@@ -196,9 +198,21 @@ public class FloatingBlock {
 	}
 	
 	public static boolean validateFloatingBlock(String name) {
-	    if (!FloatingBlock.exists(name) || !FloatingBlock.isAlive(name)) {
+	    if (!exists(name) || !isAlive(name)) {
 	        return false;
 	    }
 	    return true;
+	}
+	
+	public static boolean validateFloatingBlock(CommandSender sender, String name) {
+		if (!exists(name)) {
+			BDCommand.pSendMessage(sender, Manager.getConfig().getString("Settings.Language.BlockNotFound").replace("%name%", name), true);
+			return false;
+		}
+		if (!isAlive(name)) {
+			BDCommand.pSendMessage(sender, Manager.getConfig().getString("Settings.Language.InvalidBlock").replace("%name%", name), true);
+			return false;
+		}
+		return true;
 	}
 }

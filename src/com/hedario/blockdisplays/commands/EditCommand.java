@@ -20,18 +20,13 @@ public class EditCommand extends BDCommand {
 	}
 	@Override
 	public void execute(CommandSender sender, List<String> args) {
-	    if (!hasPermission(sender)) {
+		String name = args.get(0);
+	    if (!hasPermission(sender) || !FloatingBlock.validateFloatingBlock(sender, name)) {
 	        return;
 	    }
 
 	    if (!correctLength(sender, args.size(), 2, 4)) {
 	        showUsageDescription(sender);
-	        return;
-	    }
-
-	    String name = args.get(0);
-
-	    if (!validateFloatingBlock(sender, name)) {
 	        return;
 	    }
 
@@ -51,18 +46,6 @@ public class EditCommand extends BDCommand {
 	    for (String line : usageDescription) {
 	        BDCommand.pSendMessage(sender, line, false);
 	    }
-	}
-
-	private boolean validateFloatingBlock(CommandSender sender, String name) {
-	    if (!FloatingBlock.exists(name)) {
-	        sendMessage(sender, notFound().replace("%name%", name), true);
-	        return false;
-	    }
-	    if (!FloatingBlock.isAlive(name)) {
-	        sendMessage(sender, onInvalid().replace("%name%", name), true);
-	        return false;
-	    }
-	    return true;
 	}
 	
 	private void handleLocationCommand(CommandSender sender, String name, List<String> args) {
@@ -123,7 +106,7 @@ public class EditCommand extends BDCommand {
 	        }
 	    } else if (setting.equalsIgnoreCase("Interval")) {
 	        if (isNumeric(value)) {
-	            Manager.getFloatingBlocksConfig().set("FloatingBlocks." + name + ".AutomaticRotation.Interval", Integer.valueOf(value));
+	            Manager.getFloatingBlocksConfig().set("FloatingBlocks." + name + ".AutomaticRotation.Interval", Float.valueOf(value));
 	            sendMessage(sender, edit_autoRotInterval().replace("%value%", value).replace("%name%", name), true);
 	            Manager.floatingBlocksConfig.saveConfig();
 	        } else {
@@ -165,14 +148,6 @@ public class EditCommand extends BDCommand {
 
 	private String notNumeric() {
 		return Manager.getConfig().getString("Commands.Edit.NotNumeric");
-	}
-
-	private String notFound() {
-		return Manager.getConfig().getString("Commands.Edit.NotFound");
-	}
-
-	private String onInvalid() {
-		return Manager.getConfig().getString("Commands.Edit.OnInvalid");
 	}
 
 	private String onWrongArgument() {
